@@ -1,6 +1,3 @@
-# Skywork-Opensource
-
-
 <!-- <div align="center">
 <h1>
   ✨Skywork
@@ -9,7 +6,7 @@
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.jpeg?raw=true" target="_blank">WeChat</a>• 📜<a href="https://arxiv.org/" target="_blank">Tech Report</a>• 🧮<a href="https://arxiv.org/" target="_blank">Skywork Math Paper</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="https://arxiv.org/" target="_blank">Tech Report</a>• 🧮<a href="https://arxiv.org/" target="_blank">Skymath Paper</a>
 </p>
 
 
@@ -88,9 +85,9 @@
 |         | Huggingface基础模型   | Huggingface量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | Skywork-13B-Base      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-Chat      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-Math      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-MM      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤗 [Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) | 🤖 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖[Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
+| Skywork-13B-Chat      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤖 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) |
+| Skywork-13B-Math      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) |
+| Skywork-13B-MM      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤗 [Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) | 🤖 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤖[Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) |
 
 
 ## 数据下载
@@ -198,7 +195,7 @@ text：页面中包含的经过处理和清理的文本。
 
 ## 领域数据困惑度评估
 语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在模型训练中预测下一个词的概率一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
-$$  loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n $$
+$$loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n$$
 其中$n$是文档的长度，即token数，$p_i$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘则为生成该文档的概率，如此我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$n$，这样就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方面后续提到的loss和ppl为模型标准化后的loss和perplexity。
 
 基于上述分析，我们对对多个领域筛选出2023年10月份新发布的几百到上千篇高质量文章，并人工进行了核对。保证所有的测试数据不在天工模型以及其他所有模型的训练集中，并且测试数据的来源也足够广泛，质量也高。我们可以选取当前最新的文章评测不同模型的ppl，模型很难作弊。
