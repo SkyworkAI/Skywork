@@ -1,0 +1,6 @@
+data_cache/*
+scripts.sh
+skywork_model_config/*
+wandb/*
+*/__pycache__/*
+test/*

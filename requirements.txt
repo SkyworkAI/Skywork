@@ -1,0 +1,5 @@
+tokenizers==0.14.0
+transformers==4.34.1
+flash_attn==2.0.4
+torch==2.1.0 
+peft==0.5.0
