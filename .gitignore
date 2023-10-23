@@ -4,3 +4,4 @@ skywork_model_config/*
 wandb/*
 */__pycache__/*
 test/*
+logs/*
