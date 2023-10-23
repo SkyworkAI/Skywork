@@ -933,10 +933,10 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 
 We have tested the quantitative model on benchmark evaluation datasets, and the results are as follows:
 
-| Precision | C-Eval | MMLU  | CMMLU | GSM8K |
-| --------- | ------ | ----- | ----- | ----- |
-| bf16      | 59.5  | 61.6 | 61.6 | 55.8  |
-| 8bits     | 58.5  | 61.8 | 61.0 |    -   |
+| Precision | C-Eval | MMLU  | CMMLU | 
+| --------- | ------ | ----- | ----- | 
+| bf16      | 59.5  | 61.6 | 61.6 |
+| 8bits     | 58.5  | 61.8 | 61.0 |
 
 ### GPU Mem in GB
 
