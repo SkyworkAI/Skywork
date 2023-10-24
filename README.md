@@ -6,7 +6,7 @@
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.jpeg?raw=true" target="_blank">WeChat</a>• 📜<a href="https://arxiv.org/" target="_blank">Tech Report</a>• 🧮<a href="https://arxiv.org/" target="_blank">Skywork Math Paper</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="https://arxiv.org/" target="_blank">Tech Report</a>• 🧮<a href="https://arxiv.org/" target="_blank">Skymath Paper</a>
 </p>
 
 
@@ -55,11 +55,11 @@
 
 - **Skywork-13B-MM**多模态模型支持用户输入图片信息进行问答，对话等任务。
 
-- **Skywork/Skypile-150B**数据集。该数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为150B，目前开源最大的中文数据集之一。
+- **Skywork/Skypile-150B**数据集。该数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为150B，是目前开源最大的中文数据集之一。
 
 - 除此之外，我们还公开了在训练Skywork-13B模型中使用的评估方法、数据配比研究和训练基础设施调优方案等。我们希望这些开源内容能够进一步启发社区对于大型模型预训练的认知，并推动人工智能通用智能（AGI）的实现。
 
-如果您对更多的训练、评估细节感兴趣，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)和[Skywork-Math]((https://arxiv.org/skywork-tech-report))论文。
+如果您对更多的训练、评估细节感兴趣，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)和[Skywork-Math](https://arxiv.org/skywork-tech-report)论文。
 
 # 🔥 更新信息
 * 2023.10.25  我们开源了**Skywork-13B-Base**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** 以及他们的量化模型。我们开源了**Skywork/Skypile-150B**数据集，本数据集包含根据中文网页清洗的超过**150亿**高质量token，是已知目前最大的开源中文数据集。
@@ -85,9 +85,9 @@
 |         | Huggingface基础模型   | Huggingface量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | Skywork-13B-Base      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-Chat      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-Math      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-MM      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤗 [Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) | 🤖 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤖[Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) |
+| Skywork-13B-Chat      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤖 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) |
+| Skywork-13B-Math      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) |
+| Skywork-13B-MM      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤗 [Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) | 🤖 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤖[Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) |
 
 
 ## 数据下载
@@ -127,7 +127,10 @@
 ## 训练数据
 Skywork-13B-Base模型是在3.2 TB 高质量中、英、代码数据上进行训练，其中英文占比52.2%，中文占比39.6%，代码占比8%，保证了兼顾中文和英文上的表现，同时代码能力也能有保证。
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5fd7b2c82772318717dfdf262710a481d599596
 |             | 类目         | 百分比 |
 |-------------|------------------|------------|
 | **英文** | 网页数据         | 39.8%      |
@@ -181,26 +184,11 @@ text：页面中包含的经过处理和清理的文本。
 
 ## 领域数据困惑度评估
 语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在模型训练中预测下一个词的概率一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
-$$  loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n $$
+$$loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n$$
 其中$n$是文档的长度，即token数，$p_i$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘则为生成该文档的概率，如此我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$n$，这样就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方面后续提到的loss和ppl为模型标准化后的loss和perplexity。
 
 基于上述分析，我们对对多个领域筛选出2023年10月份新发布的几百到上千篇高质量文章，并人工进行了核对。保证所有的测试数据不在天工模型以及其他所有模型的训练集中，并且测试数据的来源也足够广泛，质量也高。我们可以选取当前最新的文章评测不同模型的ppl，模型很难作弊。
 下图列出了不同开源模型，天工Skywork-13B-Base取得最优效果，证明了天工Base模型的基础能力处于国内开源模型中文最强水平。
-
-<!-- |                  | Tech  | Movie | Gov.  | Game  | Finance | General | Average |
-|------------------|-------|-------|-------|-------|---------|---------|---------|
-| MOSS-7B          | 20.83 | 39.66 | 11.08 | 31.24 | 10.59   | 13.25   | 18.50   |
-| InternLM-7B      | 13.43 | 24.90 | 5.88  | 19.78 | 6.17    | 8.10    | 11.17   |
-| Qwen-7B          | 13.39 | 25.16 | 5.55  | 19.26 | 5.76    | 7.78    | 10.83   |
-| Baichuan2-7B     | 12.89 | 23.26 | 5.34  | 18.36 | 5.68    | 7.62    | 10.41   |
-| LLaMA2-13B       | 23.26 | 50.66 | 18.09 | 32.52 | 14.85   | 16.55   | 23.54   |
-| Xverse-13B       | 12.55 | 23.49 | 5.20  | 17.69 | 5.54    | 7.46    | 10.19   |
-| Baichuan-13B     | 12.38 | 22.46 | 5.21  | 17.59 | 5.42    | 7.37    | 10.03   |
-| Baichuan2-13B    | 12.14 | 21.85 | 5.05  | 17.15 | 5.35    | 7.24    | 9.81    |
-| Qwen-14B         | 11.90 | 22.43 | 4.89  | **16.94** | 5.24    | 7.03    | 9.67    |
-| InternLM-20B     | 12.34 | 22.06 | 5.75  | 17.45 | 5.73    | 7.78    | 10.34   |
-| Aquila2-34B      | 14.62 | 29.09 | 5.72  | 21.78 | 5.83    | 8.45    | 11.73   |
-| Skywork-13B-Base | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    | -->
 
 |                  | 技术文章  | 电影评论 | 政府报告  | 游戏  | 金融 | 通用领域 | Average |
 |------------------|-------|-------|-------|-------|---------|---------|---------|
@@ -1047,10 +1035,10 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 
 我们对量化模型在基准评测数据集上做了测试，结果如下所示：
 
-| Precision | C-Eval | MMLU  | CMMLU | GSM8K |
-| --------- | ------ | ----- | ----- | ----- |
-| bf16      | 59.5  | 61.6 | 61.6 | 55.8  |
-| 8bits     | 58.5  | 61.8 | 61.0 |    -   |
+| Precision | C-Eval | MMLU  | CMMLU |
+| --------- | ------ | ----- | ----- | 
+| bf16      | 59.5  | 61.6 | 61.6 |
+| 8bits     | 58.5  | 61.8 | 61.0 |
 
 ### 显存占用（GPU Mem in GB）
 
