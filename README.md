@@ -379,14 +379,14 @@ if __name__ == '__main__':
 
 ```
  
-python /data/user/liang.zhao/Skywork/cli_demo.py \
+python cli_demo.py \
     -m skywork-13b-chat-model-path 
 
 ```
 
 <p align="center">
     <br>
-    <img src="misc/chat_demo_1.gif" width="600" />
+    <img src="misc/chat_demo_1.gif" width="800" />
     <br>
 <p>
 <br>
@@ -394,7 +394,7 @@ python /data/user/liang.zhao/Skywork/cli_demo.py \
 
 <p align="center">
     <br>
-    <img src="misc/chat_demo_2.gif" width="600" />
+    <img src="misc/chat_demo_2.gif" width="800" />
     <br>
 <p>
 <br>
@@ -402,7 +402,7 @@ python /data/user/liang.zhao/Skywork/cli_demo.py \
 
 <p align="center">
     <br>
-    <img src="misc/chat_demo_3.gif" width="600" />
+    <img src="misc/chat_demo_3.gif" width="800" />
     <br>
 <p>
 <br>
@@ -1059,7 +1059,7 @@ export WANDB_API_KEY=YOUR_WANDB_KEY
 export WANDB_ENTITY=skywork
 export WANDB_PROJECT=skywork-13b-opensource
 
-export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export MODEL_PATH=skywork-13b-models/skywork-13b-base
 export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
 bash bash_scripts/skywork_13b_pt.sh
  
@@ -1072,7 +1072,7 @@ export WANDB_API_KEY=YOUR_WANDB_KEY
 export WANDB_ENTITY=skywork
 export WANDB_PROJECT=skywork-13b-opensource
 
-export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export SFT_DATA_DIR=data/sft_data
 export DATA_CACHE_DIR=data_cache/sft_train_demo
 bash bash_scripts/skywork_13b_sft.sh
 
@@ -1094,7 +1094,7 @@ export WANDB_API_KEY=YOUR_WANDB_KEY
 export WANDB_ENTITY=skywork
 export WANDB_PROJECT=skywork-13b-opensource
 
-export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export MODEL_PATH=skywork-13b-models/skywork-13b-base
 export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
 bash bash_scripts/skywork_13b_pt_lora.sh
  
@@ -1108,7 +1108,7 @@ export WANDB_API_KEY=YOUR_WANDB_KEY
 export WANDB_ENTITY=skywork
 export WANDB_PROJECT=skywork-13b-opensource
 
-export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export SFT_DATA_DIR=data/sft_data
 export DATA_CACHE_DIR=data_cache/sft_train_demo
 bash bash_scripts/skywork_13b_sft_lora.sh
  
