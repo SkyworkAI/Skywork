@@ -125,14 +125,11 @@ The Skywork-13B-Base model was trained on a 3.2 TB dataset consisting of high-qu
 |             | Academic Papers  | 3.0%       |
 |             | Encyclopedia     | 0.5%       |
 |             | Miscellany       | 2.9%       |
-|-------------|------------------|------------|
 | **Chinese** | Webpages         | 30.4%      |
 |             | Social Media     | 5.5%       |
 |             | Encyclopedia     | 0.8%       |
 |             | Miscellany       | 3.1%       |
-|-------------|------------------|------------|
 | **Other Lang.**    | Encyclopedia           | 2.4%       | 
-|-------------|------------------|------------|
 | **Code**    | Github           | 8.0%       | 
 
 
