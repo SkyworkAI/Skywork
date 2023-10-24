@@ -31,7 +31,7 @@ from pathlib import Path
 import datasets
 import torch
 from build_dataset import build_instruction_dataset, DataCollatorForSupervisedDataset
-import transformers
+from transformers import Trainer, GPTQConfig, deepspeed
 from transformers import (
     CONFIG_MAPPING,
     AutoConfig,
@@ -47,13 +47,9 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import send_example_telemetry
 from transformers.utils.versions import require_version
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
+
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 import sys
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(parent_dir)
-from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
-
-
-require_version("datasets>=1.8.0", "To fix: pip install -r examples/pytorch/language-modeling/requirements.txt")
 
 @dataclass
 class ModelArguments:
@@ -124,14 +120,6 @@ class ModelArguments:
             "choices": ["auto", "bfloat16", "float16", "float32"],
         },
     )
-    # use_rope_scaling: Optional[bool] = field(default=False)
-    # rope_type: Optional[str] = field(default='dynamic')
-    # rope_factor: Optional[float] = field(default=2.0)
-
-    # use_yarn: Optional[bool] = field(default=False)
-    # yarn_from_finetuned_model: Optional[bool] = field(default=False)
-    # yarn_factor: Optional[int] = field(default=16)
-    # original_max_position_embeddings: Optional[int] = field(default=4096)
 
     def __post_init__(self):
         if self.config_overrides is not None and (self.config_name is not None or self.model_name_or_path is not None):
@@ -173,31 +161,101 @@ class DataTrainingArguments:
         default=True, metadata={"help": "Whether to keep line breaks when using TXT files or not."}
     )
     data_cache_dir: Optional[str] = field(default=None, metadata={"help": "The datasets processed stored"})
-
     max_seq_length: Optional[int] = field(default=1024)
 
-
 @dataclass
-class MyTrainingArguments(TrainingArguments):
+class TrainingArguments(TrainingArguments):
     load_in_kbits: Optional[int] = field(default=16)
     report_to: Optional[str] = field(default='none')
     run_name: Optional[str] = field(default='project_name')
+    use_lora: Optional[bool] = False
+    # cache_dir: Optional[str] = field(default='model_cache')
 
+@dataclass
+class LoraArguments:
+    lora_r: Optional[int] = 64
+    lora_alpha: Optional[int] = 16
+    lora_dropout: Optional[float] = 0.05
+    lora_target_modules: Optional[List[str]] = field(
+        default_factory=lambda: ["q_proj", "v_proj"]
+    )
+    lora_weight_path: Optional[str] = ""
+    lora_bias: Optional[str] = field(default='none')
+    modules_to_save: Optional[str] = field(
+        default_factory=lambda: ["embed_tokens", "lm_head"]
+    )
+    use_q_lora: Optional[bool] = False 
+
+
+# Borrowed from peft.utils.get_peft_model_state_dict
+def get_peft_state_maybe_zero_3(named_params, bias):
+    if bias == "none":
+        to_return = {k: t for k, t in named_params if "lora_" in k}
+    elif bias == "all":
+        to_return = {k: t for k, t in named_params if "lora_" in k or "bias" in k}
+    elif bias == "lora_only":
+        to_return = {}
+        maybe_lora_bias = {}
+        lora_bias_names = set()
+        for k, t in named_params:
+            if "lora_" in k:
+                to_return[k] = t
+                bias_name = k.split("lora_")[0] + "bias"
+                lora_bias_names.add(bias_name)
+            elif "bias" in k:
+                maybe_lora_bias[k] = t
+        for k, t in maybe_lora_bias:
+            if bias_name in lora_bias_names:
+                to_return[bias_name] = t
+    else:
+        raise NotImplementedError
+    to_return = {k: maybe_zero_3(v) for k, v in to_return.items()}
+    return to_return
+
+
+def safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str, bias="none"):
+    """Collects the state dict and dump to disk."""
+    # check if zero3 mode enabled
+    if deepspeed.is_deepspeed_zero3_enabled():
+        state_dict = trainer.model_wrapped._zero3_consolidated_16bit_state_dict()
+    else:
+        if trainer.args.use_lora:
+            state_dict = get_peft_state_maybe_zero_3(
+                trainer.model.named_parameters(), bias
+            )
+        else:
+            state_dict = trainer.model.state_dict()
+    if trainer.args.should_save and trainer.args.local_rank == 0:
+        trainer._save(output_dir, state_dict=state_dict)
 
 logger = logging.getLogger(__name__)
 
 
 def main():
 
-    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, MyTrainingArguments))
-    if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
-        # If we pass only one argument to the script and it's the path to a json file,
-        # let's parse it to get our arguments.
-        model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
-    else:
-        model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
-    send_example_telemetry("run_clm", model_args, data_args)
+    parser = transformers.HfArgumentParser(
+        (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
+    )
+
+    (
+        model_args,
+        data_args,
+        training_args,
+        lora_args,
+    ) = parser.parse_args_into_dataclasses()
+    
+    device_map = "auto"
+    world_size = int(os.environ.get("WORLD_SIZE", 1))
+    ddp = world_size != 1
+    if lora_args.use_q_lora:
+        device_map = {"": int(os.environ.get("LOCAL_RANK") or 0)} if ddp else None
+        if len(training_args.fsdp) > 0 or deepspeed.is_deepspeed_zero3_enabled():
+            logging.warning(
+                "FSDP or ZeRO3 are not incompatible with QLoRA."
+            )
+
+    send_example_telemetry("run_sft", model_args, data_args)
 
     # Setup logging
     logging.basicConfig(format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",datefmt="%m/%d/%Y %H:%M:%S",
@@ -241,36 +299,8 @@ def main():
     # Set seed before initializing model.
     set_seed(training_args.seed)
 
-    config_kwargs = {
-        "cache_dir": model_args.cache_dir,
-        "revision": model_args.model_revision,
-        "use_auth_token": True if model_args.use_auth_token else None,
-    }
-    if model_args.config_name:
-        config = AutoConfig.from_pretrained(model_args.config_name, trust_remote_code=True, **config_kwargs)
-    elif model_args.model_name_or_path:
-        config = AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True, **config_kwargs)
-    else:
-        config = CONFIG_MAPPING[model_args.model_type]()
-        logger.warning("You are instantiating a new config instance from scratch.")
-        if model_args.config_overrides is not None:
-            logger.info(f"Overriding config: {model_args.config_overrides}")
-            config.update_from_string(model_args.config_overrides)
-            logger.info(f"New config: {config}")
-            
-    tokenizer_kwargs = {
-        "cache_dir": model_args.cache_dir,
-        "use_fast": model_args.use_fast_tokenizer,
-        "revision": model_args.model_revision,
-        "use_auth_token": True if model_args.use_auth_token else None,
-    }
-    tokenizer = AutoTokenizer.from_pretrained(model_args.tokenizer_name_or_path, trust_remote_code=True, **tokenizer_kwargs)
-
-    if tokenizer.pad_token_id is None:
-        if tokenizer.eos_token_id is not None:
-            tokenizer.pad_token_id = tokenizer.eos_token_id
-        else:
-            tokenizer.pad_token_id = 0
+    config = AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_args.tokenizer_name_or_path, use_fast=False, trust_remote_code=True)
 
     data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
     eval_dataset=None

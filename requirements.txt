@@ -3,3 +3,4 @@ transformers==4.34.0
 flash_attn==2.0.4
 torch==2.1.0 
 peft==0.5.0
+datasets==2.14.1

@@ -12,11 +12,12 @@ LR=1e-4
 
 DEBUG="false"
 ZERO_STAGE=2
+TASK_TYPE="pt"
 
 GLOBAL_BATCH_SIZE=32  # 8 * 4 
 MICRO_BATCH_SIZE=1 
-SAVE_STEP=1000 
-EVAL_STEP=1000 
+SAVE_STEP=500 
+EVAL_STEP=500 
 GRAD_ACC=$((${GLOBAL_BATCH_SIZE} / (${GPUS_PER_NODE} * $NNODES * ${MICRO_BATCH_SIZE}) ))
 
 FLAG=Skywork-13B-Base-pt-zero${ZERO_STAGE}-peaklr${LR}-steps${MAX_STEP}-gbs${GLOBAL_BATCH_SIZE}
@@ -24,7 +25,8 @@ FLAG=Skywork-13B-Base-pt-zero${ZERO_STAGE}-peaklr${LR}-steps${MAX_STEP}-gbs${GLO
 ROOT_PATH=${ROOT_PATH:-/data/user/your_name}
 MODEL_PATH=${MODEL_PATH:-SKYWORK_13B_BASE_MODEL_PATH}
 
-TRAIN_CACHE_DIR=${TRAIN_CACHE_DIR}
+DATA_CACHE_DIR=${DATA_CACHE_DIR}
+
 OUTPUT_DIR=$ROOT_PATH/run_output/skywork-13b-pt-trainer/$FLAG
 LOAD_MODEL_PATH=$([ -z "$MODEL_PATH" ] && echo -n "$OUTPUT_DIR" || echo -n "$MODEL_PATH")
 
@@ -73,6 +75,7 @@ OUTPUT_ARGS="
 "
 
 TRAIN_ARGS="
+    --task_type $TASK_TYPE \
     --do_train \
     --max_steps $MAX_STEP \
     --lr_scheduler_type constant_with_warmup \
@@ -96,7 +99,7 @@ EVAL_ARGS="
 INPUT_ARGS="
     --model_name_or_path $LOAD_MODEL_PATH \
     --tokenizer_name_or_path $LOAD_MODEL_PATH \
-    --train_cache_dir $TRAIN_CACHE_DIR 
+    --data_cache_dir $DATA_CACHE_DIR 
 "
 
 EXTRA_ARGS="
@@ -112,7 +115,7 @@ EXTRA_ARGS="
 "
 
 mkdir -p logs/$FLAG || True 
-torchrun $DISTRIBUTED_ARGS train/run_pt.py \
+torchrun $DISTRIBUTED_ARGS train/train.py \
     $LOG_ARGS \
     $OUTPUT_ARGS \
     $TRAIN_ARGS \

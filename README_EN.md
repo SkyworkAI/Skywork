@@ -35,7 +35,7 @@
 # 💪Project Introduction
 We are pleased to announce the open source release of the Skywork large-scale models. Skywork is a series of large models developed by the Kunlun Group · Skywork team. The models being open sourced this time include the **Skywork-13B-Base** model, **Skywork-13B-Chat** model, **Skywork-13B-Math** model, and **Skywork-13B-MM** model, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs.
 
-The characteristics of the Skywork open-source project are:：
+Our open-source Skywork series models can be used for commercial purposes, but you need to follow our agreement and refrain from engaging in harmful activities. The characteristics of the Skywork open-source project are:：
 
 - **Skywork-13B-Base**: The model was trained on a high-quality cleaned dataset consisting of 3.2 trillion multilingual data (mainly Chinese and English) and code. It has demonstrated the best performance among models of similar scale in various evaluations and benchmark tests.
 
@@ -371,7 +371,7 @@ if __name__ == '__main__':
 >>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
 陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州，湖北的省会是武汉，湖南的省会是长沙，江西的省会是南昌，安徽的省会是合肥，江苏的省会是南京，浙江的省会是杭州，福建的省会是福州，广东的省会是广州，广西的省会是南宁，海南的省会是海口，四川的省会是成都，贵州的省会是贵阳，云南的省会是昆明，西藏的省会是拉萨，青海的省会是西宁，宁夏的省会是银川，新疆的省会是乌鲁木齐。
 
-### Cli demo 
+### CLI Demo 
 
 ```
  
@@ -1044,24 +1044,73 @@ We have tested the quantitative model on benchmark evaluation datasets, and the 
 # 🛫Fine-tuning
 ## Full-Parameter Fine-Tuning
 We will show how to utilize the Skywork-13B-Base model for the purpose of fine-tuning.
+```bash
+## preprocess continue pretraining data
+## Because pre-training data is usually large, we use a script to process the training data separately.
+python train/pt_data_preprocess.py \
+    -t $MODEL_PATH \
+    -i data/pt_train.jsonl \
+    -o data_cache/pt_train_demo 
+
+## launch training
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
+bash bash_scripts/skywork_13b_pt.sh
+ 
 ```
-bash bash/skywork_13b_pt.sh
-```
+
 Full-parameter tuning of SFT model.
 
-```
-bash bash/skywork_13b_sft.sh
+```bash 
+## preprocess data and launch training
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export DATA_CACHE_DIR=data_cache/sft_train_demo
+bash bash_scripts/skywork_13b_sft.sh
+
+
 ```
 
 ## LoRA Fine-Tuning
 We will demonstrate how to use the Skywork-13B-Base model for LoRA fine-tuning.
-```
-bash bash/skywork_13b_pt_with_lora.sh
+```bash 
+## preprocess continue pretraining data
+## Because pre-training data is usually large, we use a script to process the training data separately.
+python train/pt_data_preprocess.py \
+    -t $MODEL_PATH \
+    -i data/pt_train.jsonl \
+    -o data_cache/pt_train_demo 
+
+
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
+bash bash_scripts/skywork_13b_pt_lora.sh
+ 
 ```
 Lora fine-tuning of SFT model.
 
-```
-bash bash/skywork_13b_sft_with_lora.sh
+
+```bash 
+
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export DATA_CACHE_DIR=data_cache/sft_train_demo
+bash bash_scripts/skywork_13b_sft_lora.sh
+ 
 ```
 
 # ⚠️Declaration and License Aggrement

@@ -1,34 +1,36 @@
 set -x
-export WANDB_API_KEY=YOUR_WANDB_API_KEY
-export WANDB_ENTITY=YOUR_WANDB_ENTITY
-export WANDB_PROJECT=YOUR_WANDB_PROJECT
+export WANDB_API_KEY=${WANDB_API_KEY:-YOUR_WANDB_API_KEY}
+export WANDB_ENTITY=${WANDB_ENTITY:-YOUR_WANDB_ENTITY}
+export WANDB_PROJECT=${WANDB_PROJECT:-YOUR_WANDB_PROJECT}
 
 GPUS_PER_NODE=8
 NODE_RANK=$([ -z "$RANK" ] && echo -n 0 || echo -n $RANK)
 NNODES=$([ -z "$WORLD_SIZE" ] && echo -n 1 || echo -n $WORLD_SIZE)
 
+DEBUG="false"
+USE_LORA="false"
+TASK_TYPE="sft"
+
 MAX_STEP=1000  
 LR=1e-4
-
-DEBUG="false"
-ZERO_STAGE=1
 MAX_LENGTH=4096
 
 GLOBAL_BATCH_SIZE=32 # 8 * 4
-MICRO_BATCH_SIZE=1 
-SAVE_STEP=10 
-EVAL_STEP=10 
+MICRO_BATCH_SIZE=1
+SAVE_STEP=500
+EVAL_STEP=500 
 GRAD_ACC=$((${GLOBAL_BATCH_SIZE} / (${GPUS_PER_NODE} * $NNODES * ${MICRO_BATCH_SIZE}) ))
 
-FLAG=Skywork-13B-Base-sft-zero${ZERO_STAGE}-peaklr${LR}-steps${MAX_STEP}-gbs${GLOBAL_BATCH_SIZE}-maxlen${MAX_LENGTH}
+FLAG=Skywork-13B-Base-sft-peaklr${LR}-steps${MAX_STEP}-gbs${GLOBAL_BATCH_SIZE}
 
 ROOT_PATH=${ROOT_PATH:-/data/user/your_name}
-FT_MODEL_PATH=SKYWORK_13B_BASE_MODEL_PATH
+MODEL_PATH=${MODEL_PATH:-SKYWORK_13B_BASE_MODEL_PATH}
 
-DATA_DIR=$ROOT_PATH/datasets/sft_data
-DATA_CACHE_DIR=$ROOT_PATH/datasets_cache/sft_data
+SFT_DATA_DIR=${SFT_DATA_DIR:-"YOUR_DATA_DIR"}
+DATA_CACHE_DIR=${DATA_CACHE_DIR:-"YOUR_DATA_CACHE_DIR"}
+
 OUTPUT_DIR=$ROOT_PATH/run_output/skywork-13b-sft-trainer/$FLAG
-LOAD_MODEL_PATH=$([ -z "$FT_MODEL_PATH" ] && echo -n "$OUTPUT_DIR" || echo -n "$FT_MODEL_PATH")
+LOAD_MODEL_PATH=$([ -z "$MODEL_PATH" ] && echo -n "$OUTPUT_DIR" || echo -n "$MODEL_PATH")
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --master_port 29501"
 if [[ $NNODES -gt 1 ]]; then
@@ -55,25 +57,11 @@ if [ "$DEBUG" = "true" ]; then
 
 fi
 
-DS_CONFIG=deepspeed_config/$FLAG.json
-
-cat <<EOT > $DS_CONFIG
-    {
-      "train_batch_size" : $GLOBAL_BATCH_SIZE,
-      "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
-      "steps_per_print": 10,
-      "zero_optimization": {
-        "stage": $ZERO_STAGE
-        },
-      "bf16": {
-        "enabled": true
-      }
-    }
-EOT
+DS_CONFIG=${DS_CONFIG:-train/ds_config/zero3_offload.json}
 
 LOG_ARGS="
     --logging_steps 1 \
-    --logging_dir /data/user/liang.zhao/tensorboard/$FLAG/tensorboard \
+    --logging_dir tensorboard/$FLAG \
     --logging_strategy steps \
     --logging_first_step True \
     --report_to wandb \
@@ -89,6 +77,7 @@ OUTPUT_ARGS="
 "
 
 TRAIN_ARGS="
+    --task_type $TASK_TYPE \
     --do_train \
     --max_seq_length $MAX_LENGTH \
     --max_steps $MAX_STEP \
@@ -112,9 +101,8 @@ EVAL_ARGS="
 INPUT_ARGS="
     --model_name_or_path $LOAD_MODEL_PATH \
     --tokenizer_name_or_path $LOAD_MODEL_PATH \
-    --dataset_dir $DATA_DIR \
-    --cache_dir $DATA_CACHE_DIR \
-    --validation_file YOUR_VALIDATION_FILE
+    --sft_dataset_dir $SFT_DATA_DIR \
+    --data_cache_dir $DATA_CACHE_DIR 
 "
 
 EXTRA_ARGS="
@@ -130,7 +118,7 @@ EXTRA_ARGS="
 "
 
 mkdir -p logs/$FLAG || True 
-torchrun $DISTRIBUTED_ARGS train/run_sft.py \
+torchrun $DISTRIBUTED_ARGS train/train.py \
     $LOG_ARGS \
     $OUTPUT_ARGS \
     $TRAIN_ARGS \

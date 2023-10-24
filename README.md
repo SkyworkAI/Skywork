@@ -45,24 +45,24 @@
 # 💪项目介绍
 我们很高兴宣布开源了Skywork大模型，Skywork是由昆仑万维集团·天工团队开发的一系列大型模型，本次开源的模型有**Skywork-13B-Base**模型、**Skywork-13B-Chat**模型、**Skywork-13B-Math**模型和**Skywork-13B-MM**模型，以及每个模型的量化版模型，以支持用户在消费级显卡进行部署和推理。
 
-我们开源的Skywork系列模型可以用于商业用途，具体的协议将在后面进行补充。Skywork开源项目的特点有：
+我们开源的Skywork系列模型可以用于商业用途，但需要遵循我们的协议，不进行有害活动。Skywork开源项目的特点有：
 
-- **Skywork-13B-Base**模型是在经过高质量清洗过滤的3.2万亿个多语言（主要是中文和英文）和代码数据上进行训练的，它在多种评测和各种基准测试上都展现了同等规模模型的最佳效果。
+- **Skywork-13B-Base**模型在高质量清洗过滤的3.2万亿个多语言（主要是中文和英文）和代码数据上进行预训练，它在多种评测和各种基准测试上都展现了同等规模模型的最佳效果。
 
-- **Skywork-13B-Chat**模型具备强大的对话能力，我们在**文创**领域进行了进一步的针对性增强。我们通过构建一万多条高质量指令数据集，在10个文创任务上进行了针对性微调，使其在文创任务中能够接近ChatGPT的效果。此外，我们开源了针对这10个文创任务上的大约500条样本组成的benchmark。
+- **Skywork-13B-Chat**模型具备强大的对话能力，我们在**文创**领域进行了进一步的针对性增强。我们通过构建一万多条高质量指令数据集，在10个文创任务上进行了针对性微调，使我们的模型在文创任务中能够接近ChatGPT的效果。此外，我们开源了针对这10个文创任务上的大约500条样本组成的benchmark。
 
 - **Skywork-13B-Math**模型经过专门的数学能力强化训练。在13B规模的模型中，Skywork-13B-Math模型在GSM8K评测上得分第一，同时在MATH数据集以及CMATH上也表现优异，处于13B模型顶尖水平。
 
 - **Skywork-13B-MM**多模态模型支持用户输入图片信息进行问答，对话等任务。
 
-- **Skywork/Skypile-150B**数据集。该数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为150B，是目前开源最大的中文数据集之一。
+- **Skywork/Skypile-150B**数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为150B，是目前开源最大的中文数据集之一。
 
 - 除此之外，我们还公开了在训练Skywork-13B模型中使用的评估方法、数据配比研究和训练基础设施调优方案等。我们希望这些开源内容能够进一步启发社区对于大型模型预训练的认知，并推动人工智能通用智能（AGI）的实现。
 
-如果您对更多的训练、评估细节感兴趣，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)和[Skywork-Math](https://arxiv.org/skywork-tech-report)论文。
+如果您对更多的训练技术，评估细节感兴趣，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)和[Skywork-Math](https://arxiv.org/skywork-tech-report)论文。
 
 # 🔥 更新信息
-* 2023.10.25  我们开源了**Skywork-13B-Base**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** 以及他们的量化模型。我们开源了**Skywork/Skypile-150B**数据集，本数据集包含根据中文网页清洗的超过**150亿**高质量token，是已知目前最大的开源中文数据集。
+* 2023.10.25  我们开源了**Skywork-13B-Base**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
 
 
 # 📖目录
@@ -99,7 +99,7 @@
 # 👨‍💻模型介绍
 
 ## 模型结构
-与Llama2-13B模型对比，天工Skywork-13B模型采用相对更加瘦长的网络结构，层数为52层，同时将FFN Dim和Hidden Dim缩小到12288和4608，从而保证模型参数量和原始Llama-13B模型相当。根据我们前期实验对比，相对瘦长的网络结构在大Batch Size训练下可以取得更好的泛化效果。Skywork-13B和Llama-2-13B模型的对比如下：
+与Llama-2-13B模型对比，天工Skywork-13B模型采用相对更加瘦长的网络结构，层数为52层，同时将FFN Dim和Hidden Dim缩小到12288和4608，从而保证模型参数量和原始Llama-2-13B模型相当。根据我们前期实验对比，相对瘦长的网络结构在大Batch Size训练下可以取得更好的泛化效果。Skywork-13B和Llama-2-13B模型的对比如下：
 
 
 | 模型结构         | Llama2-13B | Skywork-13B | 
@@ -379,7 +379,7 @@ if __name__ == '__main__':
 
 
 ```
-### Cli demo 
+### CLI Demo 
 
 ```
  
@@ -1050,24 +1050,72 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 # 🛫模型微调
 ## 全量微调
 我们展示如何使用Skywork-13B-Base模型进行全量微调。
-```
-bash bash/skywork_13b_pt.sh
+```bash
+## preprocess continue pretraining data
+## Because pre-training data is usually large, we use a script to process the training data separately.
+python train/pt_data_preprocess.py \
+    -t $MODEL_PATH \
+    -i data/pt_train.jsonl \
+    -o data_cache/pt_train_demo 
+
+## launch training
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
+bash bash_scripts/skywork_13b_pt.sh
+ 
 ```
 使用Base模型进行SFT
 
-```
-bash bash/skywork_13b_sft.sh
+```bash 
+## preprocess data and launch training
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export DATA_CACHE_DIR=data_cache/sft_train_demo
+bash bash_scripts/skywork_13b_sft.sh
+
+
 ```
 
 ## LoRA微调
 我们展示如何使用Skywork-13B-Base模型进行LoRA微调。
-```
-bash bash/skywork_13b_pt_with_lora.sh
+```bash 
+## preprocess continue pretraining data
+## Because pre-training data is usually large, we use a script to process the training data separately.
+python train/pt_data_preprocess.py \
+    -t $MODEL_PATH \
+    -i data/pt_train.jsonl \
+    -o data_cache/pt_train_demo 
+
+
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export MODEL_PATH=/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base
+export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
+bash bash_scripts/skywork_13b_pt_lora.sh
+ 
 ```
 使用Base模型进行SFT
 
-```
-bash bash/skywork_13b_sft_with_lora.sh
+```bash 
+
+
+export WANDB_API_KEY=YOUR_WANDB_KEY
+export WANDB_ENTITY=skywork
+export WANDB_PROJECT=skywork-13b-opensource
+
+export SFT_DATA_DIR=/data/user/liang.zhao/Skywork/data/sft_data
+export DATA_CACHE_DIR=data_cache/sft_train_demo
+bash bash_scripts/skywork_13b_sft_lora.sh
+ 
 ```
 
 # ⚠️声明和协议
