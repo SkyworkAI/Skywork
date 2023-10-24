@@ -3,8 +3,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 import torch
 
-tokenizer = AutoTokenizer.from_pretrained("Skywork/Skywork-13B-Chat", trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("Skywork/Skywork-13B-Chat", device_map="auto", trust_remote_code=True).eval()
+tokenizer = AutoTokenizer.from_pretrained("Skywork/Skywork-13B-Base", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("Skywork/Skywork-13B-Base", device_map="auto", trust_remote_code=True).eval()
 
 inputs = tokenizer('陕西的省会是西安', return_tensors='pt').to(model.device)
 response = model.generate(inputs.input_ids, max_length=128)

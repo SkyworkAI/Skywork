@@ -181,6 +181,22 @@ class TrainingArguments(TrainingArguments):
     use_lora: Optional[bool] = False
     # cache_dir: Optional[str] = field(default='model_cache')
 
+@dataclass
+class LoraArguments:
+    lora_r: Optional[int] = 64
+    lora_alpha: Optional[int] = 16
+    lora_dropout: Optional[float] = 0.05
+    lora_target_modules: Optional[List[str]] = field(
+        default_factory=lambda: ["q_proj", "v_proj"]
+    )
+    lora_weight_path: Optional[str] = ""
+    lora_bias: Optional[str] = field(default='none')
+    modules_to_save: Optional[str] = field(
+        default_factory=lambda: ["embed_tokens", "lm_head"]
+    )
+    use_q_lora: Optional[bool] = False 
+
+
 # Borrowed from peft.utils.get_peft_model_state_dict
 def get_peft_state_maybe_zero_3(named_params, bias):
     if bias == "none":
@@ -221,19 +237,6 @@ def safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: st
             state_dict = trainer.model.state_dict()
     if trainer.args.should_save and trainer.args.local_rank == 0:
         trainer._save(output_dir, state_dict=state_dict)
-
-
-@dataclass
-class LoraArguments:
-    lora_r: Optional[int] = 64
-    lora_alpha: Optional[int] = 16
-    lora_dropout: Optional[float] = 0.05
-    lora_target_modules: Optional[List[str]] = field(
-        default_factory=lambda: ["c_attn", "c_proj", "w1", "w2"]
-    )
-    lora_weight_path: Optional[str] = ""
-    lora_bias: Optional[str] = "none"
-    use_q_lora: Optional[bool] = False 
 
 logger = logging.getLogger(__name__)
 
@@ -365,15 +368,22 @@ def main():
         quantization_config=GPTQConfig(
             bits=4, disable_exllama=True
         )
-        if training_args.use_lora and lora_args.q_lora
+        if training_args.use_lora and lora_args.use_q_lora
         else None,
     )
 
+    model_vocab_size = model.get_input_embeddings().weight.shape[0]
+    logger.info(f"Model vocab size: {model_vocab_size}")
+    logger.info(f"len(tokenizer):{len(tokenizer)}")
+    if model_vocab_size != len(tokenizer):
+        logger.info(f"Resize model vocab size to {len(tokenizer)}")
+        model.resize_token_embeddings(len(tokenizer))
+
     if training_args.use_lora:
-        if lora_args.q_lora or 'chat' in model_args.model_name_or_path.lower():
+        if lora_args.use_q_lora or 'chat' in model_args.model_name_or_path.lower():
             modules_to_save = None
         else:
-            modules_to_save = ["wte", "lm_head"]
+            modules_to_save = lora_args.modules_to_save
         lora_config = LoraConfig(
             r=lora_args.lora_r,
             lora_alpha=lora_args.lora_alpha,
@@ -383,7 +393,7 @@ def main():
             task_type="CAUSAL_LM",
             modules_to_save=modules_to_save  # This argument serves for adding new tokens.
         )
-        if lora_args.q_lora:
+        if lora_args.use_q_lora:
             model = prepare_model_for_kbit_training(
                 model, use_gradient_checkpointing=training_args.gradient_checkpointing
             )
@@ -398,13 +408,6 @@ def main():
             model.enable_input_require_grads()
 
     model.config.use_cache = False
-
-    model_vocab_size = model.get_input_embeddings().weight.shape[0]
-    logger.info(f"Model vocab size: {model_vocab_size}")
-    logger.info(f"len(tokenizer):{len(tokenizer)}")
-    if model_vocab_size != len(tokenizer):
-        logger.info(f"Resize model vocab size to {len(tokenizer)}")
-        model.resize_token_embeddings(len(tokenizer))
 
     # Initialize our Trainer
     trainer = Trainer(
