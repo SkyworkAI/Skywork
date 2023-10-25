@@ -282,6 +282,47 @@ export DATA_CACHE_DIR=data_cache/sft_train_demo
 bash bash_scripts/skywork_13b_sft_lora.sh
  
 ```
+
+# 量化部署（Quantization）
+
+## 8bit量化（Int8 Quantization）
+
+skywork 采用主流8bits量化方法：[BitsAndBytes](https://github.com/TimDettmers/bitsandbytes)。该方法量化后性能基本无损，且已经集成到transformers库中，基于BitsAndBytes，我们提供在线量化和离线8bits模型两种方式。
+
+以下我们提供示例说明如何使用int8量化模型，在开始使用之前，请先安装BitsAndBytes库并安装所需依赖包，具体安装方式见[BitsAndBytes](https://github.com/TimDettmers/bitsandbytes)库。
+
+### 在线量化（Online Quantization）
+
+```python
+model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base", torch_dtype=torch.bfloat16,load_in_8bit=True, trust_remote_code=True).eval()
+```
+
+### 离线量化（Offline Quantization）
+
+```python
+model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_map="auto", torch_dtype=torch.bfloat16,trust_remote_code=True).eval()
+```
+
+
+
+### 量化效果（Evaluation）
+
+我们对量化模型在基准评测数据集上做了测试，结果如下所示：
+
+| Precision | C-Eval | MMLU  | CMMLU |
+| --------- | ------ | ----- | ----- | 
+| bf16      | 59.5  | 61.6 | 61.6 |
+| 8bits     | 58.5  | 61.8 | 61.0 |
+
+### 显存占用（GPU Mem in GB）
+
+| Precision | Skywork-13B |
+| --------- | ----------- |
+| bf16      | 25.91       |
+| 8bits     | 13.57       |
+
+
+
 # 声明和协议（Declaration and License Aggrement）
 
 

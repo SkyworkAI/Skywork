@@ -26,250 +26,42 @@
 [![GitHub Forks](https://img.shields.io/github/forks/SkyworkAI/Skywork)](https://github.com/SkyworkAI/Skywork/fork)
 </div>
 
-<div align="center">
 
 
+# 模型介绍（Introduction）
+**Skywork-13B-Chat**模型具备强大的对话能力，我们在**文创**领域进行了进一步的针对性增强。我们通过构建一万多条高质量指令数据集，在10个文创任务上进行了针对性微调，使我们的模型在文创任务中能够接近ChatGPT的效果。此外，我们开源了针对这10个文创任务上的大约500条样本组成的benchmark。
 
-
-
-<h4 align="center">
-    <p>
-        <b>中文</b> |
-        <a href="https://github.com/SkyworkAI/Skywork/blob/main/README_EN.md">English</a>
-    <p>
-</h4>
-
-</div>
-
-
-# 💪项目介绍
-我们很高兴宣布开源了Skywork大模型，Skywork是由昆仑万维集团·天工团队开发的一系列大型模型，本次开源的模型有**Skywork-13B-Base**模型、**Skywork-13B-Chat**模型、**Skywork-13B-Math**模型和**Skywork-13B-MM**模型，以及每个模型的量化版模型，以支持用户在消费级显卡进行部署和推理。
-
-我们开源的Skywork系列模型可以用于商业用途，但需要遵循我们的协议，不进行有害活动。Skywork开源项目的特点有：
-
-- **Skywork-13B-Base**模型在高质量清洗过滤的3.2万亿个多语言（主要是中文和英文）和代码数据上进行预训练，它在多种评测和各种基准测试上都展现了同等规模模型的最佳效果。
-
-- **Skywork-13B-Chat**模型具备强大的对话能力，我们在**文创**领域进行了进一步的针对性增强。我们通过构建一万多条高质量指令数据集，在10个文创任务上进行了针对性微调，使我们的模型在文创任务中能够接近ChatGPT的效果。此外，我们开源了针对这10个文创任务上的大约500条样本组成的benchmark。
-
-- **Skywork-13B-Math**模型经过专门的数学能力强化训练。在13B规模的模型中，Skywork-13B-Math模型在GSM8K评测上得分第一，同时在MATH数据集以及CMATH上也表现优异，处于13B模型顶尖水平。
-
-- **Skywork-13B-MM**多模态模型支持用户输入图片信息进行问答，对话等任务。
-
-- **Skywork/Skypile-150B**数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为150B，是目前开源最大的中文数据集之一。
-
-- 除此之外，我们还公开了训练Skywork-13B模型中使用的评估方法、数据配比研究和训练基础设施调优方案等信息。我们希望这些开源内容能够进一步启发社区对于大型模型预训练的认知，并推动人工智能通用智能（AGI）的实现。
+**Skywork-13B-Chat**: The model has powerful conversational abilities, and we have further enhanced it in the field of cultural and creative industries. We have constructed a high-quality dataset of over ten thousand instructions and fine-tuned the model on ten specific cultural and creative tasks, enabling it to achieve results similar to ChatGPT in these tasks. Additionally, we open-source a benchmark consisting of approximately 500 samples for these 10 cultural and creative tasks.
 
 如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)和[Skywork-Math](https://arxiv.org/skywork-tech-report)论文。
 
-# 🔥 更新信息
-* 2023.10.25  我们开源了**Skywork-13B-Base**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
+If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report) and [Skywork-Math]((https://arxiv.org/skywork-tech-report)) paper.
 
-
-# 📖目录
-
-- [☁️下载地址](#下载地址)
-- [👨‍💻模型介绍](#模型介绍)
-- [🏆模型评估](#模型评估)
-- [📕快速开始](#快速开始)
-- [📣模型样例展示](#模型样例展示)
-- [🚀量化部署](#量化部署)
-- [🛫模型微调](#模型微调)
-- [⚠️声明和协议](#声明和协议)
-- [🤝引用和联系我们](#引用和联系我们)
-
-
-# 下载地址
-## 模型下载
-
-
-|         | Huggingface基础模型   | Huggingface量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
-|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| Skywork-13B-Base      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
-| Skywork-13B-Chat      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Chat](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat) | 🤖 [Skywork-13B-Chat-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat-8bits) |
-| Skywork-13B-Math      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |
-| Skywork-13B-MM      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | 🤗 [Skywork-13B-MM-8bits](https://huggingface.co/Skywork/Skywork-13B-MM-8bits) | 🤖 [Skywork-13B-MM](https://www.modelscope.cn/models/skywork/Skywork-13B-MM) | 🤖[Skywork-13B-MM-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-MM-8bits) |
-
-
-## 数据下载
-|    数据集名称     |    下载地址  |
-|:-------:|:-----------:|
-| Skywork/Skypile-150B |  [Hugging Face地址](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
-
-
-
-# 模型介绍
-
-## 训练数据
-我们精心搭建了数据清洗流程对文本中的低质量数据、有害信息、敏感信息进行清洗过滤。我们的Skywork-13B-Base模型是在清洗后的3.2TB高质量中、英、代码数据上进行训练，其中英文占比52.2%，中文占比39.6%，代码占比8%，在兼顾中文和英文上的表现的同时，代码能力也能有保证。
-
-|             | 类目         | 百分比 |
-|-------------|------------------|------------|
-| **英文** | 网页数据         | 39.8%      |
-|             | 书籍数据            | 3.6%       |
-|             | 学术论文  | 3.0%       |
-|             | 百科全书     | 0.5%       |
-|             | 其他（年报，文书等）       | 2.9%       |
-| **中文** | 网页数据         | 30.4%      |
-|             | 社交媒体数据     | 5.5%       |
-|             | 百科全书     | 0.8%       |
-|             | 其他（年报，文书等）      | 3.1%       |
-| **其他语言**    | 百科全书           | 2.4%       |
-| **代码**    | Github           | 8.0%       |
-
-
-## 模型结构
-与Llama-2-13B模型对比，天工Skywork-13B模型采用相对更加瘦长的网络结构，层数为52层，同时将FFN Dim和Hidden Dim缩小到12288和4608，从而保证模型参数量和原始Llama-2-13B模型相当。根据我们前期实验对比，相对瘦长的网络结构在大Batch Size训练下可以取得更好的泛化效果。Skywork-13B和Llama-2-13B模型的对比如下：
-
-
-| 模型结构         | Llama2-13B | Skywork-13B | 
-|----------------------|:----:|:-----------:|
-| 词表大小 | 32,000 |    65,536     | 
-| Hidden Dim  | 5,120 |    4,608     | 
-| FFN Dim  | 13,696 |    12,288     |
-| Head Dim | 128 |    128     | 
-| Attention头数 | 40 |    36     | 
-| 层数 | 40 |    52     | 
-| 训练序列长度 | 4,096 |    4,096     | 
-| 位置编码 | RoPE | RoPE |
-
-
-## 分词器 
-我们使用Byte-Pair Encoding（BPE）对数据进行分词，词表大小为65536，其中拉丁字符和子词为32000个，汉字和Unicode符号8000个，汉语词语25519个，剩下的17个为保留字。
-
-| 类别                            | 大小    |
-|---------------------------------|--------|
-| 拉丁基础词和子词                   | 32000  |
-| 汉字和Unicode符号                  | 8000   |
-| 汉语词语                         | 25519  |
-| 保留符号                         | 17     |
-| **总计**                         | **65536** |
-
-## 训练方法
-为了更加精细化利用数据，我们采用两阶段训练方法，第一阶段使用通用语料进行模型通用能力学习，第二部分加入STEM（科学，技术，工程，数学）相关数据进一步增强模型的推理能力、数学能力、问题解决能力。
-
-### 第一阶段预训练
-训练过程中我们监督模型训练损失和各项能力的变化。下图是第一阶段预训练中我们筛选出来的重要指标的变化曲线。第一阶段预训练包含两个连续的训练过程，我们用不同的颜色表示。第一阶段预训练完成的模型我们称之为Skywork-13B-3.1TB-Base
-![metrics of stage one](misc/stage1_metrics.png)
-
-### 第二阶段预训练
-第二阶段预训练在通用语料中额外加入STEM相关数据继续训练。第二阶段训练大约130B token，两阶段总计训练3.2TB，产生了我们最终的Skywork-13B-Base模型。
-
-<img src="misc/stage2_ceval.png" alt="Image" width="500" height="400">
-
-## 开源数据
-### Skypile-150B简介
-Skypile-150B 是一个大型的中文语言模型预训练数据集，它取自于公开可用的中文互联网网页数据，并经过严格的过滤和广泛的重复数据删除，同时还采用了fastText和Bert等模型对低质量数据进行过滤。Skypile-150B包含大约166M个单独网页，平均每篇文章中文字符超过1,000。数据集总共约150B token，硬盘大小为592GB。
-
-### 语言和数据字段
-Skypile-150B 数据集为中文数据。页面中包含的经过处理和清理的文本，数据格式为jsonl，每一行为一个文档，按行用json进行解析，文本存放在text字段中。
-
-### 敏感信息和偏见
-虽然经过了严格的清洗和过滤，由于 Skypile-150B 建立的公开可用的网页之上，因此它可能仍然包含一些敏感信息，例如电子邮件、电话号码或 IP 地址等。因此使用者需要注意，在使用数据前进行必要的进一步过滤和清洗。
-
-### 协议
-数据的使用需要遵循我们的协议，不做任何危害国家社会安全和违法的用途。
-
-# 模型评估
-## 领域数据困惑度评估
-语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在模型训练中预测下一个词的概率一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
-
-```math
-loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
-```
-
-其中$`n`$是文档的长度，即token数，$`p_i`$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘则为生成该文档的概率，如此我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$`n`$，这样就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方便后续提到的loss和ppl为模型标准化后的loss和perplexity。
-
-基于上述分析，我们对对多个领域筛选出2023年10月份新发布的几百到上千篇高质量文章，并人工进行了核对。保证所有的测试数据不在天工模型以及其他所有模型的训练集中，并且测试数据的来源也足够广泛，质量也高。我们可以选取当前最新的文章评测不同模型的ppl，模型很难作弊。
-下图列出了不同开源模型，天工Skywork-13B-Base取得最优效果，证明了我们的Base模型的基础能力处于国内开源模型中文最强水平。
-
-|                  | 技术文章  | 电影评论 | 政府报告  | 游戏  | 金融 | 通用领域 | Average |
-|------------------|-------|-------|-------|-------|---------|---------|---------|
-| MOSS-7B          | 20.83 | 39.66 | 11.08 | 31.24 | 10.59   | 13.25   | 18.50   |
-| InternLM-7B      | 13.43 | 24.90 | 5.88  | 19.78 | 6.17    | 8.10    | 11.17   |
-| Qwen-7B          | 13.39 | 25.16 | 5.55  | 19.26 | 5.76    | 7.78    | 10.83   |
-| Baichuan2-7B     | 12.89 | 23.26 | 5.34  | 18.36 | 5.68    | 7.62    | 10.41   |
-| LLaMA2-13B       | 23.26 | 50.66 | 18.09 | 32.52 | 14.85   | 16.55   | 23.54   |
-| Xverse-13B       | 12.55 | 23.49 | 5.20  | 17.69 | 5.54    | 7.46    | 10.19   |
-| Baichuan-13B     | 12.38 | 22.46 | 5.21  | 17.59 | 5.42    | 7.37    | 10.03   |
-| Baichuan2-13B    | 12.14 | 21.85 | 5.05  | 17.15 | 5.35    | 7.24    | 9.81    |
-| Qwen-14B         | 11.90 | 22.43 | 4.89  | **16.94** | 5.24    | 7.03    | 9.67    |
-| InternLM-20B     | 12.34 | 22.06 | 5.75  | 17.45 | 5.73    | 7.78    | 10.34   |
-| Aquila2-34B      | 14.62 | 29.09 | 5.72  | 21.78 | 5.83    | 8.45    | 11.73   |
-| Skywork-13B-Base (ours) | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    |
-
-### 评测数据和评测脚本
-我们将评测数据和评测脚本也进行了开源，运行下面命令则可以复现我们的结果。
-```
-bash bash_scripts/skywork_eval_loss.sh
-```
-
-## Benchmark评估
-我们评估了各大权威评测benchmark上的结果作为参考，包括C-Eval，MMLU，CMMLU，GSM8K。遵循之前的评估流程，C-Eval、MMLU、CMMLU测试5-shot结果，GSM8K测试8-shot结果。可以看到Skywork-13B-Base模型在中文开源模型中处于前列，在同等参数规模下为最优水平。
-
-| Model            | C-Eval  | CMMLU | MMLU | GSM8K |  
-|-------------------------|:-----:|:---------------:|:----------:|:-------:|
-| LLaMA-1-13B-Base            | 35.5  | 31.2            | 46.9       | 17.8   | 
-| Open-LLaMA-13B | 27.1  | 26.7         | 42.7       | 12.4   |
-| LLaMA-2-13B-Base             | 36.5  | 36.6            | 54.8      | 28.7   | 
-| InternLM-20B  | 58.8  |     -        |  62.0      | 52.6   | 
-| Qwen-14B-Base | 72.1  |  71.0           | 66.3       | 61.3   |
-| Aquila2-34B-Base | 63.1  |  71.4           | 64.2       | 58.4   |
-| XVERSE-13B-Base              | 54.7  | -           | 55.1       | -   | 
-| Baichuan-13B-Base | 52.4  | 55.3            | 51.6      | 26.6   |
-| Baichuan-2-13B-Base | 58.1  | 62.0            | 59.2       | 52.3  |
-| Skywork-13B-Base (ours)   | 59.5 | 61.6 | 61.6    | 55.8 | 
-
-## Benchmark评估详细结果
-我们给出**Skywork-13B-Base**模型在C-Eval，CMMLU，MMLU上模型的详细结果。
-
-
-| 评测集 | **STEM** | **Humanities** | **Social Science** | **Other** | **China Specific** | **Hard** | **Average** | 
-|:-----:|:---------:|:--------:|:-------------:|:--------:|:--------:|:--------:|:--------:|
-| **C-Eval** |   51.5   | 65.1    | 73.9        |  55.1   | - | 39.9   |  59.5   |
-| **CMMLU**   |   49.8   | 68.9    | 65.6        |  62.8   | 63.7 | -   |  61.6   |
-| **MMLU**   |   50.6   | 57.8    | 71.9       |  68.3   | - | -   |  61.6   |
-
-
-# 快速开始
+# 快速开始（Quickstart）
 我们将模型参数、配置文件、tokenizer等在huggingface和modelscope上进行了开源。
-## 依赖安装
+
+We have open-sourced the model parameters, configuration files, tokenizer, and more on Huggingface and Modelscope.
+
+## 依赖安装（Requirements）
 - Python 3.8及以上版本
 - Pytorch 2.0及以上版本
 - CUDA建议使用11.4以上版本。
 
 Skywork-13B-Base模型，Skywork-13B-Chat模型和Skywork-13B-Math模型运行下面的脚本进行Python依赖安装。
+
+- Python 3.8 and above
+- Pytorch 2.0 and above 
+- CUDA 11.4 and above are recommended.
+
+Skywork-13B-Base model, Skywork-13B-Chat model, and Skywork-13B-Math model run the following script for Python dependency installation:
+
 ```shell
 pip install -r requirements.txt 
 ```
-## Huggingface模型测试
+## Huggingface模型测试（Demonstration）
 
 
-### Base 模型推理
-
-```python
-
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
->>> from transformers.generation import GenerationConfig
->>> import torch
-
->>> tokenizer = AutoTokenizer.from_pretrained("SkyworkAI/Skywork-13B-Base", trust_remote_code=True)
->>> model = AutoModelForCausalLM.from_pretrained("SkyworkAI/Skywork-13B-Base", device_map="auto", trust_remote_code=True).eval()
-
->>> inputs = tokenizer('陕西的省会是西安', return_tensors='pt').to(model.device)
->>> response = model.generate(inputs.input_ids, max_length=128)
->>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
-陕西的省会是西安，西安是我国著名的古都，在历史上有十三个朝代在此建都，所以西安又被称为“十三朝古都”。西安是我国著名的旅游城市，每年都有大量的游客来到西安旅游，西安的旅游资源非常丰富，有很多著名的旅游景点，比如秦始皇兵马俑、大雁塔、华清池、大唐芙蓉园、西安城墙、大明宫国家遗址公园、西安碑林博物馆、西安钟楼、西安鼓楼、西安半坡博物馆、西安大兴善寺、西安小雁塔
-
-
->>> inputs = tokenizer('陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州', return_tensors='pt').to(model.device)
->>> response = model.generate(inputs.input_ids, max_length=128)
->>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
-陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州，湖北的省会是武汉，湖南的省会是长沙，江西的省会是南昌，安徽的省会是合肥，江苏的省会是南京，浙江的省会是杭州，福建的省会是福州，广东的省会是广州，广西的省会是南宁，海南的省会是海口，四川的省会是成都，贵州的省会是贵阳，云南的省会是昆明，西藏的省会是拉萨，青海的省会是西宁，宁夏的省会是银川，新疆的省会是乌鲁木齐。
-
-
-```
-
-### Chat 模型推理
+### Chat 模型推理（Chat Model Inference）
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
@@ -385,50 +177,6 @@ if __name__ == '__main__':
     """
 ```
 
-
-### Math 模型推理
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
-
-tokenizer_path = ""
-checkpoint_path = ""
-
-tokenizer = AutoTokenizer.from_pretrained(
-    tokenizer_path, use_fast=False, trust_remote_code=True, padding_side='left')
-
-model = AutoModelForCausalLM.from_pretrained(
-    checkpoint_path, device_map="auto", trust_remote_code=True).eval()
-tokenizer.add_tokens(["[USER]", "[BOT]", "[SEP]"])
-
-def special_encode(input, tokenizer):
-    raw_str = "[USER]%s[SEP][BOT]" % input.strip().replace("\r", "")
-    eos_id = tokenizer.eos_token_id
-    bos_id = tokenizer.bos_token_id
-    sep_id = tokenizer.encode("[SEP]")[-1]
-    res_id = [eos_id, bos_id]
-    arr = raw_str.split("[SEP]")
-    for elem_idx in range(len(arr)):
-        elem = arr[elem_idx]
-        elem_id = tokenizer.encode(elem)[1:]
-        res_id += elem_id
-        if elem_idx < len(arr) - 1:
-            res_id.append(sep_id)
-
-    return res_id
-if __name__ == '__main__':
-    text = "小王要将150千克含药量20%的农药稀释成含药量5%的药水．需要加水多少千克？"
-    text_token_ids = torch.tensor(special_encode(
-        text, tokenizer)).to(model.device).reshape(1, -1)
-    response = model.generate(text_token_ids, do_sample=False, max_length=512)
-    response_text = tokenizer.decode(response.cpu()[0], skip_special_tokens=True).split(
-        "[BOT]")[-1].split("[SEP]")[0].strip()
-    print(response_text)   
-    """输出结果：
-    首先，我们需要计算出150千克含药量20%的农药中含有多少千克的药。\n\n150千克 * 20% = 30千克\n\n然后，我们需要计算出要得到含药量5%的药水，需要多少千克的药水。\n\n30千克 / 5% = 600千克\n\n最后，我们需要计算出需要加多少千克的水。\n\n600千克 - 150千克 = 450千克\n\n所以答案是，小王需要加450千克的水。
-    """ 
-```
-
 ### CLI Demo 
 
 ```
@@ -462,8 +210,11 @@ python cli_demo.py \
 <br>
 
 
-# 📣模型样例展示
+# 📣模型样例展示（Chat Model Output Examples）
 我们构建了精细的天工场景能力体系，针对其中的10种文创场景构建了1w+高质量数据集，并提出了根据单场景训练难度进行配比的数据混合策略，最终在10个场景上的精度均达到ChatGPT的90%以上。下面是我们Chat模型在10个文创任务上的样例展示。
+
+We have developed an advanced Skywork scene capability system and curated a dataset of more than 10,000 high-quality examples for 10 different cultural and creative scenes. Additionally, we have devised a data mixing strategy that takes into account the training difficulty of each specific scene. As a result, our model achieved an accuracy rate exceeding 90% across all 10 scenes in ChatGPT. Below, we list sample demonstrations of our Chat model in these 10 cultural and creative tasks.
+
 
 <details><summary><b>诗词创作</b></summary>
 
@@ -1057,9 +808,7 @@ Skywork-13B-Chat：
 </details>
 
 
-
-
-# 量化部署
+# 量化部署（Quantization）
 
 ## 8bit量化（Int8 Quantization）
 
@@ -1097,82 +846,11 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 | bf16      | 25.91       |
 | 8bits     | 13.57       |
 
-# 模型微调
-## 全量微调
-使用Skywork-13B-Base模型进行预训练微调
-```bash
-## preprocess continue pretraining data
-## Because pre-training data is usually large, we use a script to process the training data separately.
-python train/pt_data_preprocess.py \
-    -t $MODEL_PATH \
-    -i data/pt_train.jsonl \
-    -o data_cache/pt_train_demo 
 
-## launch training
-export WANDB_API_KEY=YOUR_WANDB_KEY
-export WANDB_ENTITY=skywork
-export WANDB_PROJECT=skywork-13b-opensource
-
-export MODEL_PATH=skywork-13b-models/skywork-13b-base
-export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
-bash bash_scripts/skywork_13b_pt.sh
- 
-```
-使用Skywork-13B-Base模型进行有监督微调（SFT, Supevise Fine-tuning）
-
-```bash 
-## preprocess data and launch training
-export WANDB_API_KEY=YOUR_WANDB_KEY
-export WANDB_ENTITY=skywork
-export WANDB_PROJECT=skywork-13b-opensource
-
-export SFT_DATA_DIR=data/sft_data
-export DATA_CACHE_DIR=data_cache/sft_train_demo
-bash bash_scripts/skywork_13b_sft.sh
+# 声明和协议（Declaration and License Aggrement）
 
 
-```
-
-## LoRA微调
-使用Skywork-13B-Base模型以及LoRA进行预训练微调
-```bash 
-## preprocess continue pretraining data
-## Because pre-training data is usually large, we use a script to process the training data separately.
-python train/pt_data_preprocess.py \
-    -t $MODEL_PATH \
-    -i data/pt_train.jsonl \
-    -o data_cache/pt_train_demo 
-
-
-export WANDB_API_KEY=YOUR_WANDB_KEY
-export WANDB_ENTITY=skywork
-export WANDB_PROJECT=skywork-13b-opensource
-
-export MODEL_PATH=skywork-13b-models/skywork-13b-base
-export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
-bash bash_scripts/skywork_13b_pt_lora.sh
- 
-```
-
-使用Skywork-13B-Base模型以及LoRA进行有监督微调（SFT, Supevise Fine-tuning）
-
-```bash 
-
-
-export WANDB_API_KEY=YOUR_WANDB_KEY
-export WANDB_ENTITY=skywork
-export WANDB_PROJECT=skywork-13b-opensource
-
-export SFT_DATA_DIR=data/sft_data
-export DATA_CACHE_DIR=data_cache/sft_train_demo
-bash bash_scripts/skywork_13b_sft_lora.sh
- 
-```
-
-# 声明和协议
-
-
-## 声明
+## 声明（Declaration）
 
 我们在此声明，不要利用Skywork模型进行任何危害国家社会安全或违法的活动。另外，我们也要求使用者不要将 Skywork 模型用于未经适当安全审查和备案的互联网服务。我们希望所有的使用者都能遵守这个原则，确保科技的发展能在规范和合法的环境下进行。
 
@@ -1182,7 +860,7 @@ We hereby declare that the Skywork model should not be used for any activities t
 
 We have done our utmost to ensure the compliance of the data used during the model's training process. However, despite our extensive efforts, due to the complexity of the model and data, there may still be unpredictable risks and issues. Therefore, if any problems arise as a result of using the Skywork open-source model, including but not limited to data security issues, public opinion risks, or any risks and problems arising from the model being misled, abused, disseminated, or improperly utilized, we will not assume any responsibility.
 
-## 协议
+## 协议（License Aggrement）
 
 社区使用Skywork模型需要遵循[《Skywork 模型社区许可协议》](https://github.com/SkyworkAI/Skywork/blob/main/Skywork%20模型社区许可协议.pdf)。Skywork模型支持商业用途，如果您计划将Skywork模型或其衍生品用于商业目的，无需再次申请， 但请您仔细阅读[《Skywork 模型社区许可协议》](https://github.com/SkyworkAI/Skywork/blob/main/Skywork%20模型社区许可协议.pdf)并严格遵守相关条款。 
 
@@ -1196,8 +874,10 @@ The community usage of Skywork model requires [Skywork Community License](https:
 
 [skywork-opensource@kunlun-inc.com]: mailto:skywork-opensource@kunlun-inc.com
 
-# 引用和联系我们
+# 引用和联系我们（Contact Us and Citation）
 如果您觉得我们的工作对您有帮助，欢迎引用我们的论文~
+
+If you find our work helpful, please feel free to cite our paper~
 ```
 @article{skyworktechreport,
   title={},
