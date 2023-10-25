@@ -121,7 +121,7 @@ Compared to the Llama2-13B model, the Skywork-13B model adopts a relatively thin
 | Positional Embedding | RoPE | RoPE |
 
 
-## Tokenization
+## Tokenizer 
 We use Byte-Pair Encoding (BPE) to tokenize the data, with a vocabulary size of 65536. Among them, there are 32000 Latin characters and subwords, 8000 Chinese characters and Unicode symbols, 25519 Chinese words, and the remaining 17 are reserved words.
 
 | Category                            | Size    |
@@ -189,6 +189,16 @@ The figure below displays the performance of different open source models. Skywo
 | Aquila2-34B      | 14.62 | 29.09 | 5.72  | 21.78 | 5.83    | 8.45    | 11.73   |
 | Skywork-13B-Base | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    | 
 
+
+### Loss evaluation data and evaluation script
+We have also open-sourced the data and evaluation scripts. You can reproduce our results by running the following command.
+
+```
+bash bash_scripts/skywork_eval_loss.sh
+```
+
+
+
 ## Benchmark Results
 We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, MMLU, CMMLU, and GSM8K. Following the previous evaluation process, we tested the 5-shot results of C-Eval, MMLU, and CMMLU, and the 8-shot results of GSM8K. It can be seen that the Skywork-13B-Base model is among the top models in the Chinese open source model community, performing at an optimal level with the same parameter scale.
 
@@ -204,14 +214,6 @@ We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, M
 | Baichuan-13B-Base | 52.4  | 55.3            | 51.6      | 26.6   |
 | Baichuan-2-13B-Base | 58.1  | 62.0            | 59.2       | 52.3  |
 | Skywork-13B-Base (ours)   | 59.5 | 61.6 | 61.6    | 55.8 | 
-
-### Loss evaluation data and evaluation script
-We have also open-sourced the data and evaluation scripts. You can reproduce our results by running the following command.
-
-```
-bash bash_scripts/skywork_eval_loss.sh
-```
-
 
 ## Detailed Benchmark Results
 We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and MMLU.
