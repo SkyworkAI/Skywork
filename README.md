@@ -1099,7 +1099,7 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 
 # 🛫模型微调
 ## 全量微调
-我们展示如何使用Skywork-13B-Base模型进行全量微调。
+使用Skywork-13B-Base模型进行PT(Pre-training)
 ```bash
 ## preprocess continue pretraining data
 ## Because pre-training data is usually large, we use a script to process the training data separately.
@@ -1118,7 +1118,7 @@ export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
 bash bash_scripts/skywork_13b_pt.sh
  
 ```
-使用Base模型进行SFT
+使用Skywork-13B-Base模型进行SFT(Supervised Fine-tuning)
 
 ```bash 
 ## preprocess data and launch training
@@ -1134,7 +1134,7 @@ bash bash_scripts/skywork_13b_sft.sh
 ```
 
 ## LoRA微调
-我们展示如何使用Skywork-13B-Base模型进行LoRA微调。
+使用Skywork-13B-Base模型进行PT（pre-training）
 ```bash 
 ## preprocess continue pretraining data
 ## Because pre-training data is usually large, we use a script to process the training data separately.
@@ -1153,7 +1153,8 @@ export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
 bash bash_scripts/skywork_13b_pt_lora.sh
  
 ```
-使用Base模型进行SFT
+
+使用Skywork-13B-Base模型进行SFT(Supervised Fine-tuning)
 
 ```bash 
 
