@@ -32,7 +32,7 @@
 </div>
 
 
-# 💪Project Introduction
+# Project Introduction
 We are pleased to announce the open source release of the Skywork large-scale models. Skywork is a series of large models developed by the Kunlun Group · Skywork team. The models being open sourced this time include the **Skywork-13B-Base** model, **Skywork-13B-Chat** model, **Skywork-13B-Math** model, and **Skywork-13B-MM** model, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs.
 
 Our open-source Skywork series models can be used for commercial purposes, but you need to follow our agreement and refrain from engaging in harmful activities. The characteristics of the Skywork open-source project are:：
@@ -51,24 +51,24 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 
 If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report) and [Skywork-Math]((https://arxiv.org/skywork-tech-report)) paper.
 
-# 🔥 News and Updates
+# News and Updates
 * 2023.10.25  We release the **Skywork-13B**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** model, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
 
 
-# 📖Table of contents
+# Table of contents
 
-- [☁️Download URL](#☁️Download-URL)
-- [👨‍💻Model Introduction](#👨‍💻Model-Introduction)
-- [🏆Model Evaluation](#🏆Model-Evaluation)
-- [📕Quickstart](#📕Quickstart)
-- [📣Chat Model Output Examples](#📣Chat-Model-Output-Examples)
-- [🚀Quantization](#🚀Quantization)
-- [🛫Fine-tuning](#🛫Fine-tuning)
-- [⚠️Declaration and License Aggrement](#⚠️Declaration-and-License-Aggrement)
-- [🤝Contact Us and Citation](#🤝Contact-Us-and-Citation)
+- [☁️Download URL](#Download-URL)
+- [👨‍💻Model Introduction](#Model-Introduction)
+- [🏆Model Evaluation](#Model-Evaluation)
+- [📕Quickstart](#Quickstart)
+- [📣Chat Model Output Examples](#Chat-Model-Output-Examples)
+- [🚀Quantization](#Quantization)
+- [🛫Fine-tuning](#Fine-tuning)
+- [⚠️Declaration and License Aggrement](#Declaration-and-License-Aggrement)
+- [🤝Contact Us and Citation](#Contact-Us-and-Citation)
 
 
-# ☁️Download URL
+# Download URL
 ## Model Download URL
 
 |         | Huggingface Base Model   | Huggingface Quantized Model |  Modelscope Base Model   | Modelscope Quantized Model |
@@ -86,7 +86,7 @@ If you are interested in more training and evaluation details, please refer to o
 | Skywork/Skypile-150B |  [Hugging Face](https://huggingface.co/Skywork/Skywork-13B-Base) |  [Baidu Drive](https://huggingface.co/Skywork/Skywork-13B-Base) | [Google Drive](https://huggingface.co/Skywork/Skywork-13B-Base) |
 
 
-# 👨‍💻Model Introduction
+# Model Introduction
 
 ## Model Structure
 Compared to the Llama2-13B model, the Skywork-13B model adopts a relatively thinner and deeper network structure with 52 layers. At the same time, the FFN Dim and Hidden Dim are reduced to 12288 and 4608, respectively, to ensure that the model has a similar number of parameters as the original Llama-13B model. Based on our preliminary experimental results, a relatively thinner and deeper network structure can achieve better generalization performance under large batch size training. The detailed comparison between the Skywork-13B and Llama-2-13B models is as follows:
@@ -170,7 +170,7 @@ With the open source release of Skypile-150B, we aim to increase access to high-
 ### License Aggrement
 The use of data must comply with our License and must not be used for any purpose that poses a threat to national and social security or violates the law.
 
-# 🏆Model Evaluation
+# Model Evaluation
 
 ## Documentation Perplexity Evaluation
 The main goal of training a language model is to improve the accuracy of predicting the next word. With this in mind, we believe that evaluating the ability of a language model to generate articles in different domains is a crucial way to assess the performance of large-scale models. During model training, the likelihood of predicting the next word is typically measured using the Cross Entropy loss function. The overall loss function is calculated as the average of the losses when predicting the correct word at each position, which can be represented as:
@@ -234,7 +234,7 @@ We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and 
 | **MMLU**   |   50.6   | 57.8    | 71.9       |  68.3   | - | -   |  61.6   |
 
 
-# 📕Quickstart
+# Quickstart
 We have open-sourced the model parameters, configuration files, tokenizer, and more on Hugging Face.
 ## Requirements
 ```shell
@@ -458,7 +458,7 @@ python cli_demo.py \
 <br>
 
 
-# 📣Chat Model Output Examples
+# Chat Model Output Examples
 We have developed an advanced Skywork scene capability system and curated a dataset of more than 10,000 high-quality examples for 10 different cultural and creative scenes. Additionally, we have devised a data mixing strategy that takes into account the training difficulty of each specific scene. As a result, our model achieved an accuracy rate exceeding 90% across all 10 scenes in ChatGPT. Below, we list sample demonstrations of our Chat model in these 10 cultural and creative tasks.
 
 
@@ -1056,7 +1056,7 @@ Skywork-13B-Chat：
 
 
 
-# 🚀Quantization
+# Quantization
 
 ## 8bit Quntization
 
@@ -1094,9 +1094,10 @@ We have tested the quantitative model on benchmark evaluation datasets, and the 
 | bf16      | 25.91       |
 | 8bits     | 13.57       |
 
-# 🛫Fine-tuning
+# Fine-tuning
 ## Full-Parameter Fine-Tuning
-We will show how to utilize the Skywork-13B-Base model for the purpose of fine-tuning.
+
+Continuing pre-training with the Skywork-13B-Base model.
 ```bash
 ## preprocess continue pretraining data
 ## Because pre-training data is usually large, we use a script to process the training data separately.
@@ -1116,7 +1117,7 @@ bash bash_scripts/skywork_13b_pt.sh
  
 ```
 
-Full-parameter tuning of SFT model.
+Conducting supervised fine-tuning with Skywork-13B-Base model.
 
 ```bash 
 ## preprocess data and launch training
@@ -1132,7 +1133,8 @@ bash bash_scripts/skywork_13b_sft.sh
 ```
 
 ## LoRA Fine-Tuning
-We will demonstrate how to use the Skywork-13B-Base model for LoRA fine-tuning.
+
+Continuing LoRA pre-training with the Skywork-13B-Base model with LoRA.
 ```bash 
 ## preprocess continue pretraining data
 ## Because pre-training data is usually large, we use a script to process the training data separately.
@@ -1151,8 +1153,8 @@ export DATA_CACHE_DIR=data_cache/pt_train_demo/pt_train
 bash bash_scripts/skywork_13b_pt_lora.sh
  
 ```
-Lora fine-tuning of SFT model.
 
+Conducting supervised fine-tuning with Skywork-13B-Base model with LoRA.
 
 ```bash 
 
@@ -1166,7 +1168,7 @@ bash bash_scripts/skywork_13b_sft_lora.sh
  
 ```
 
-# ⚠️Declaration and License Aggrement
+# Declaration and License Aggrement
 
 
 ## Declaration
@@ -1186,7 +1188,7 @@ The community usage of Skywork model requires [Skywork Community License](https:
 
 [skywork-opensource@kunlun-inc.com]: mailto:skywork-opensource@kunlun-inc.com
 
-# 🤝Contact Us and Citation
+# Contact Us and Citation
 If you find our work helpful, please feel free to cite our paper~
 ```
 @article{skyworktechreport,

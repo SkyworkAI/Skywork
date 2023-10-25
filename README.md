@@ -67,18 +67,18 @@
 
 # 📖目录
 
-- [☁️下载地址](#☁️下载地址)
-- [👨‍💻模型介绍](#👨‍💻模型介绍)
-- [🏆模型评估](#🏆模型评估)
-- [📕快速开始](#📕快速开始)
-- [📣模型样例展示](#📣模型样例展示)
-- [🚀量化部署](#🚀量化部署)
-- [🛫模型微调](#🛫模型微调)
-- [⚠️声明和协议](#⚠️声明和协议)
-- [🤝引用和联系我们](#🤝引用和联系我们)
+- [☁️下载地址](#下载地址)
+- [👨‍💻模型介绍](#模型介绍)
+- [🏆模型评估](#模型评估)
+- [📕快速开始](#快速开始)
+- [📣模型样例展示](#模型样例展示)
+- [🚀量化部署](#量化部署)
+- [🛫模型微调](#模型微调)
+- [⚠️声明和协议](#声明和协议)
+- [🤝引用和联系我们](#引用和联系我们)
 
 
-# ☁️下载地址
+# 下载地址
 ## 模型下载
 
 
@@ -96,7 +96,7 @@
 | Skywork/Skypile-150B |  [Hugging Face地址](https://huggingface.co/Skywork/Skywork-13B-Base) |  [百度云](https://huggingface.co/Skywork/Skywork-13B-Base) | [谷歌云](https://huggingface.co/Skywork/Skywork-13B-Base) |
 
 
-# 👨‍💻模型介绍
+# 模型介绍
 
 ## 模型结构
 与Llama-2-13B模型对比，天工Skywork-13B模型采用相对更加瘦长的网络结构，层数为52层，同时将FFN Dim和Hidden Dim缩小到12288和4608，从而保证模型参数量和原始Llama-2-13B模型相当。根据我们前期实验对比，相对瘦长的网络结构在大Batch Size训练下可以取得更好的泛化效果。Skywork-13B和Llama-2-13B模型的对比如下：
@@ -175,7 +175,7 @@ text：页面中包含的经过处理和清理的文本。
 ### 协议
 数据的使用需要遵循我们的协议，不做任何危害国家社会安全和违法的用途。
 
-# 🏆模型评估
+# 模型评估
 
 
 ## 领域数据困惑度评估
@@ -238,7 +238,7 @@ bash bash_scripts/skywork_eval_loss.sh
 | **MMLU**   |   50.6   | 57.8    | 71.9       |  68.3   | - | -   |  61.6   |
 
 
-# 📕快速开始
+# 快速开始
 我们将模型参数、配置文件、tokenizer等在huggingface上进行了开源。
 ## 依赖安装
 ```shell
@@ -1059,7 +1059,7 @@ Skywork-13B-Chat：
 
 
 
-# 🚀量化部署
+# 量化部署
 
 ## 8bit量化
 
@@ -1097,7 +1097,7 @@ model = AutoModelForCausalLM.from_pretrained("skywork-13B-Base-8bits", device_ma
 | bf16      | 25.91       |
 | 8bits     | 13.57       |
 
-# 🛫模型微调
+# 模型微调
 ## 全量微调
 使用Skywork-13B-Base模型进行PT(Pre-training)
 ```bash
@@ -1169,7 +1169,7 @@ bash bash_scripts/skywork_13b_sft_lora.sh
  
 ```
 
-# ⚠️声明和协议
+# 声明和协议
 
 
 ## 声明
@@ -1196,7 +1196,7 @@ The community usage of Skywork model requires [Skywork Community License](https:
 
 [skywork-opensource@kunlun-inc.com]: mailto:skywork-opensource@kunlun-inc.com
 
-# 🤝引用和联系我们
+# 引用和联系我们
 如果您觉得我们的工作对您有帮助，欢迎引用我们的论文~
 ```
 @article{skyworktechreport,
