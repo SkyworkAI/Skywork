@@ -144,6 +144,7 @@ During the training process, we monitor the changes in model training loss and v
 
 ### Second-stage Pretraining
 In the second stage of pre-training, STEM-related data is added to the general language corpus for further training. The second stage training involves approximately 130 billion tokens, resulting in a total training of 3.2 TB across both stages, and yielding our final Skywork-13B-Base model.
+
 <img src="misc/stage2_ceval.png" alt="Image" width="500" height="400">
 
 ## Data Opensource
@@ -214,6 +215,14 @@ We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, M
 | Baichuan-13B-Base | 52.4  | 55.3            | 51.6      | 26.6   |
 | Baichuan-2-13B-Base | 58.1  | 62.0            | 59.2       | 52.3  |
 | Skywork-13B-Base (ours)   | 59.5 | 61.6 | 61.6    | 55.8 | 
+
+### Loss evaluation data and evaluation script
+We have also open-sourced the data and evaluation scripts. You can reproduce our results by running the following command.
+
+```
+bash bash_scripts/skywork_eval_loss.sh
+```
+
 
 ## Detailed Benchmark Results
 We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and MMLU.
