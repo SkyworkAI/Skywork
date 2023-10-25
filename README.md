@@ -245,7 +245,7 @@ bash bash_scripts/skywork_eval_loss.sh
 pip install -r requirements.txt 
 ```
 ## Huggingface模型测试
-### Chat模型
+### Chat 模型推理
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
@@ -361,7 +361,7 @@ if __name__ == '__main__':
     """
 ```
 
-### Base模型
+### Base 模型推理
 
 ```python
 
@@ -385,6 +385,47 @@ if __name__ == '__main__':
 
 
 ```
+
+### Math 模型推理
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+tokenizer_path = ""
+checkpoint_path = ""
+
+tokenizer = AutoTokenizer.from_pretrained(
+    tokenizer_path, use_fast=False, trust_remote_code=True, padding_side='left')
+
+model = AutoModelForCausalLM.from_pretrained(
+    checkpoint_path, device_map="auto", trust_remote_code=True).eval()
+tokenizer.add_tokens(["[USER]", "[BOT]", "[SEP]"])
+
+def special_encode(input, tokenizer):
+    raw_str = "[USER]%s[SEP][BOT]" % input.strip().replace("\r", "")
+    eos_id = tokenizer.eos_token_id
+    bos_id = tokenizer.bos_token_id
+    sep_id = tokenizer.encode("[SEP]")[-1]
+    res_id = [eos_id, bos_id]
+    arr = raw_str.split("[SEP]")
+    for elem_idx in range(len(arr)):
+        elem = arr[elem_idx]
+        elem_id = tokenizer.encode(elem)[1:]
+        res_id += elem_id
+        if elem_idx < len(arr) - 1:
+            res_id.append(sep_id)
+
+    return res_id
+if __name__ == '__main__':
+    text="Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?"
+    text_token_ids = torch.tensor(special_encode(
+        text, tokenizer)).to(model.device).reshape(1, -1)
+    response = model.generate(text_token_ids, do_sample=False, max_length=512)
+    response_text = tokenizer.decode(response.cpu()[0], skip_special_tokens=True).split(
+        "[BOT]")[-1].split("[SEP]")[0].strip()
+    print(response_text)    
+```
+
 ### CLI Demo 
 
 ```
