@@ -419,6 +419,9 @@ if __name__ == '__main__':
     response_text = tokenizer.decode(response.cpu()[0], skip_special_tokens=True).split(
         "[BOT]")[-1].split("[SEP]")[0].strip()
     print(response_text)    
+    """Skywork-13B-Math Response:
+    First, we need to find out how many eggs Janet has left after eating for breakfast and baking for her friends. \n\nShe has 16 eggs per day, eats 3 for breakfast and uses 4 for baking. So, 16 - 3 - 4 = 9 eggs are left for selling at the farmers' market.\n\nSince she sells each egg for $2, she makes 9 * 2 = $<<9*2=18>>18 every day at the farmers' market.\n\nSo, the answer is $18.
+    """
 ```
 
 

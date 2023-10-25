@@ -417,13 +417,16 @@ def special_encode(input, tokenizer):
 
     return res_id
 if __name__ == '__main__':
-    text="Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?"
+    text = "小王要将150千克含药量20%的农药稀释成含药量5%的药水．需要加水多少千克？"
     text_token_ids = torch.tensor(special_encode(
         text, tokenizer)).to(model.device).reshape(1, -1)
     response = model.generate(text_token_ids, do_sample=False, max_length=512)
     response_text = tokenizer.decode(response.cpu()[0], skip_special_tokens=True).split(
         "[BOT]")[-1].split("[SEP]")[0].strip()
-    print(response_text)    
+    print(response_text)   
+    """输出结果：
+    首先，我们需要计算出150千克含药量20%的农药中含有多少千克的药。\n\n150千克 * 20% = 30千克\n\n然后，我们需要计算出要得到含药量5%的药水，需要多少千克的药水。\n\n30千克 / 5% = 600千克\n\n最后，我们需要计算出需要加多少千克的水。\n\n600千克 - 150千克 = 450千克\n\n所以答案是，小王需要加450千克的水。
+    """ 
 ```
 
 ### CLI Demo 
