@@ -380,6 +380,48 @@ if __name__ == '__main__':
 陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州，湖北的省会是武汉，湖南的省会是长沙，江西的省会是南昌，安徽的省会是合肥，江苏的省会是南京，浙江的省会是杭州，福建的省会是福州，广东的省会是广州，广西的省会是南宁，海南的省会是海口，四川的省会是成都，贵州的省会是贵阳，云南的省会是昆明，西藏的省会是拉萨，青海的省会是西宁，宁夏的省会是银川，新疆的省会是乌鲁木齐。
 ```
 
+
+### Math Model Inference
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+tokenizer_path = ""
+checkpoint_path = ""
+
+tokenizer = AutoTokenizer.from_pretrained(
+    tokenizer_path, use_fast=False, trust_remote_code=True, padding_side='left')
+
+model = AutoModelForCausalLM.from_pretrained(
+    checkpoint_path, device_map="auto", trust_remote_code=True).eval()
+tokenizer.add_tokens(["[USER]", "[BOT]", "[SEP]"])
+
+def special_encode(input, tokenizer):
+    raw_str = "[USER]%s[SEP][BOT]" % input.strip().replace("\r", "")
+    eos_id = tokenizer.eos_token_id
+    bos_id = tokenizer.bos_token_id
+    sep_id = tokenizer.encode("[SEP]")[-1]
+    res_id = [eos_id, bos_id]
+    arr = raw_str.split("[SEP]")
+    for elem_idx in range(len(arr)):
+        elem = arr[elem_idx]
+        elem_id = tokenizer.encode(elem)[1:]
+        res_id += elem_id
+        if elem_idx < len(arr) - 1:
+            res_id.append(sep_id)
+
+    return res_id
+if __name__ == '__main__':
+    text="Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?"
+    text_token_ids = torch.tensor(special_encode(
+        text, tokenizer)).to(model.device).reshape(1, -1)
+    response = model.generate(text_token_ids, do_sample=False, max_length=512)
+    response_text = tokenizer.decode(response.cpu()[0], skip_special_tokens=True).split(
+        "[BOT]")[-1].split("[SEP]")[0].strip()
+    print(response_text)    
+```
+
+
 ### CLI Demo 
 
 
