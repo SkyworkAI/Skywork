@@ -82,7 +82,7 @@ If you are interested in more training and evaluation details, please refer to o
 ## DATA Download URL
 |    Data    |    Download URL | 
 |:-------:|:-----------:|
-| Skywork/Skypile-150B |  [Hugging Face](https://huggingface.co/Skywork/Skywork-13B-Base) |
+| Skywork/Skypile-150B |  [Hugging Face URL](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
 
 # Model Introduction
 

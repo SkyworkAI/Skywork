@@ -93,7 +93,7 @@
 ## 数据下载
 |    数据集名称     |    下载地址  |
 |:-------:|:-----------:|
-| Skywork/Skypile-150B |  [Hugging Face地址](https://huggingface.co/Skywork/Skywork-13B-Base)  |
+| Skywork/Skypile-150B |  [Hugging Face地址](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
 
 
 
