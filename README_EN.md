@@ -144,8 +144,7 @@ During the training process, we monitor the changes in model training loss and v
 
 ### Second-stage Pretraining
 In the second stage of pre-training, STEM-related data is added to the general language corpus for further training. The second stage training involves approximately 130 billion tokens, resulting in a total training of 3.2 TB across both stages, and yielding our final Skywork-13B-Base model.
-![Alt text](misc/stage2_ceval.png)
-
+<img src="misc/stage2_ceval.png" alt="Image" width="500" height="400">
 
 ## Data Opensource
 
@@ -174,9 +173,12 @@ The use of data must comply with our License and must not be used for any purpos
 
 ## Documentation Perplexity Evaluation
 The main goal of training a language model is to improve the accuracy of predicting the next word. With this in mind, we believe that evaluating the ability of a language model to generate articles in different domains is a crucial way to assess the performance of large-scale models. During model training, the likelihood of predicting the next word is typically measured using the Cross Entropy loss function. The overall loss function is calculated as the average of the losses when predicting the correct word at each position, which can be represented as:
-$$loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n$$
 
-Where $n$ is the length of the document, i.e., the number of tokens, and $p_i$ is the probability of the label word at position $i$. We know that the product of the probabilities of the label words at each position in the document is equal to the probability of generating that document. In this way, we connect the loss with the probability of generating the document. Since different models use different tokenizers and have different numbers of tokens, we multiply the loss function by the number of tokens $n$. This way, we only consider the part related to the probability of generating the article, and different models can be compared. We normalize the loss and convert it to perplexity by taking the exponential, making the differences between models more pronounced. For readability, the terms "loss" and "ppl" mentioned later refer to the normalized loss and perplexity of the model.
+```math
+loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
+```
+
+Where $`n`$ is the length of the document, i.e., the number of tokens, and $`p_i`$ is the probability of the label word at position $i$. We know that the product of the probabilities of the label words at each position in the document is equal to the probability of generating that document. In this way, we connect the loss with the probability of generating the document. Since different models use different tokenizers and have different numbers of tokens, we multiply the loss function by the number of tokens $`n`$. This way, we only consider the part related to the probability of generating the article, and different models can be compared. We normalize the loss and convert it to perplexity by taking the exponential, making the differences between models more pronounced. For readability, the terms "loss" and "ppl" mentioned later refer to the normalized loss and perplexity of the model.
 
 Based on the analysis above, we have chosen several hundred to thousands of high-quality articles that were published in October 2023 across various fields. We have manually verified these articles to ensure their quality. It is important to note that none of the test data used in evaluating the Skywork model or any other models is included in their training set. Furthermore, the test data is diverse and of high quality, making it challenging for the models to gain an unfair advantage.
 
@@ -367,11 +369,12 @@ if __name__ == '__main__':
 >>> response = model.generate(inputs.input_ids, max_length=128)
 >>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
 陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州，湖北的省会是武汉，湖南的省会是长沙，江西的省会是南昌，安徽的省会是合肥，江苏的省会是南京，浙江的省会是杭州，福建的省会是福州，广东的省会是广州，广西的省会是南宁，海南的省会是海口，四川的省会是成都，贵州的省会是贵阳，云南的省会是昆明，西藏的省会是拉萨，青海的省会是西宁，宁夏的省会是银川，新疆的省会是乌鲁木齐。
+```
 
 ### CLI Demo 
 
+
 ```
- 
 python cli_demo.py \
     -m skywork-13b-chat-model-path 
 
@@ -400,7 +403,6 @@ python cli_demo.py \
 <p>
 <br>
 
-```
 
 # 📣Chat Model Output Examples
 We have developed an advanced Skywork scene capability system and curated a dataset of more than 10,000 high-quality examples for 10 different cultural and creative scenes. Additionally, we have devised a data mixing strategy that takes into account the training difficulty of each specific scene. As a result, our model achieved an accuracy rate exceeding 90% across all 10 scenes in ChatGPT. Below, we list sample demonstrations of our Chat model in these 10 cultural and creative tasks.
