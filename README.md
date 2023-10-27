@@ -229,6 +229,10 @@ bash bash_scripts/skywork_eval_loss.sh
 | **CMMLU**   |   49.8   | 68.9    | 65.6        |  62.8   | 63.7 | -   |  61.6   |
 | **MMLU**   |   50.6   | 57.8    | 71.9       |  68.3   | - | -   |  61.6   |
 
+## 复现
+
+我们提供了评测脚本以供复现我们的实验结果。注意，由于内部代码和开源代码存在少许差异，评测结果可能与汇报结果存在细微的结果不一致。请阅读[eval/EVALUATION.md](eval/EVALUATION.md)了解更多信息。
+<br><br> 
 
 # 快速开始
 我们将模型参数、配置文件、tokenizer等在huggingface和modelscope上进行了开源。

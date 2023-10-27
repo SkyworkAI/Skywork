@@ -224,6 +224,10 @@ We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and 
 | **CMMLU**   |   49.8   | 68.9    | 65.6        |  62.8   | 63.7 | -   |  61.6   |
 | **MMLU**   |   50.6   | 57.8    | 71.9       |  68.3   | - | -   |  61.6   |
 
+## Reproduction
+
+For your reproduction of the model performance on benchmark datasets, we provide scripts for you to reproduce the results. Check [eval/EVALUATION.md](eval/EVALUATION.md) for more information. Note that the reproduction may lead to slight differences from our reported results.
+<br><br>
 
 # Quickstart
 We have open-sourced the model parameters, configuration files, tokenizer, and more on Huggingface and Modelscope.
