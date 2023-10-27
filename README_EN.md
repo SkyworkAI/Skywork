@@ -247,23 +247,27 @@ pip install -r requirements.txt
 
 ```python
 
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
->>> from transformers.generation import GenerationConfig
->>> import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers.generation import GenerationConfig
+import torch
 
->>> tokenizer = AutoTokenizer.from_pretrained("SkyworkAI/Skywork-13B-Base", trust_remote_code=True)
->>> model = AutoModelForCausalLM.from_pretrained("SkyworkAI/Skywork-13B-Base", device_map="auto", trust_remote_code=True).eval()
+tokenizer = AutoTokenizer.from_pretrained("SkyworkAI/Skywork-13B-Base", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("SkyworkAI/Skywork-13B-Base", device_map="auto", trust_remote_code=True).eval()
 
->>> inputs = tokenizer('陕西的省会是西安', return_tensors='pt').to(model.device)
->>> response = model.generate(inputs.input_ids, max_length=128)
->>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
+inputs = tokenizer('陕西的省会是西安', return_tensors='pt').to(model.device)
+response = model.generate(inputs.input_ids, max_length=128)
+print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
+"""
 陕西的省会是西安，西安是我国著名的古都，在历史上有十三个朝代在此建都，所以西安又被称为“十三朝古都”。西安是我国著名的旅游城市，每年都有大量的游客来到西安旅游，西安的旅游资源非常丰富，有很多著名的旅游景点，比如秦始皇兵马俑、大雁塔、华清池、大唐芙蓉园、西安城墙、大明宫国家遗址公园、西安碑林博物馆、西安钟楼、西安鼓楼、西安半坡博物馆、西安大兴善寺、西安小雁塔
+"""
 
-
->>> inputs = tokenizer('陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州', return_tensors='pt').to(model.device)
->>> response = model.generate(inputs.input_ids, max_length=128)
->>> print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
+inputs = tokenizer('陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州', return_tensors='pt').to(model.device)
+response = model.generate(inputs.input_ids, max_length=128)
+print(tokenizer.decode(response.cpu()[0], skip_special_tokens=True))
+"""
 陕西的省会是西安，甘肃的省会是兰州，河南的省会是郑州，湖北的省会是武汉，湖南的省会是长沙，江西的省会是南昌，安徽的省会是合肥，江苏的省会是南京，浙江的省会是杭州，福建的省会是福州，广东的省会是广州，广西的省会是南宁，海南的省会是海口，四川的省会是成都，贵州的省会是贵阳，云南的省会是昆明，西藏的省会是拉萨，青海的省会是西宁，宁夏的省会是银川，新疆的省会是乌鲁木齐。
+"""
+
 ```
 
 
