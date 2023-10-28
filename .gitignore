@@ -1,0 +1,15 @@
+data_cache/*
+scripts.sh
+skywork_model_config
+skywork_model_config/*
+skywork_model_config.tar
+wandb/*
+*/__pycache__/*
+test/*
+logs/*
+test
+wandb
+wandb/*
+.DS_Store
+model_cards_old/*
+model_cards_old

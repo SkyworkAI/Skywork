@@ -1,0 +1,26 @@
+{
+    "train_batch_size" : "auto",
+    "train_micro_batch_size_per_gpu": "auto",
+    "steps_per_print": 10,
+    "gradient_accumulation_steps": "auto",
+    "wall_clock_breakdown": false,
+    "zero_optimization": {
+        "stage": 3,
+        "contiguous_gradients": true,
+        "stage3_max_live_parameters": 1e9,
+        "stage3_max_reuse_distance": 1e9,
+        "stage3_prefetch_bucket_size": 1e7,
+        "stage3_param_persistence_threshold": 1e5,
+        "reduce_bucket_size": 1e7,
+        "sub_group_size": 1e9,
+        "offload_optimizer": {
+            "device": "cpu"
+        },
+        "offload_param": {
+            "device": "cpu"
+        }
+    },
+    "bf16": {
+        "enabled": true
+    }
+}
