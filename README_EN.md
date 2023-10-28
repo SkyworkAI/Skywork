@@ -51,7 +51,7 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 
 - In addition, we have also disclosed the evaluation methods, data distribution studies, and training infrastructure optimization plans used in training the Skywork-13B model. We hope that these open-source materials can further inspire the community's understanding of large-scale model pre-training and drive the realization of Artificial General Intelligence (AGI).
 
-If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
+If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report), [Skymath](https://arxiv.org/skywork-tech-report) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
  
 # News and Updates
 * 2023.10.30  We release the **Skywork-13B**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** model, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
