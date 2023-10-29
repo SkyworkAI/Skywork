@@ -1,4 +1,5 @@
 data_cache/*
+data_cache
 scripts.sh
 skywork_model_config
 skywork_model_config/*
