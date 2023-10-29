@@ -53,7 +53,7 @@
 
 - **Skywork-13B-Math**模型经过专门的数学能力强化训练。在13B参数规模下，我们的模型在**GSM8K评测上得分第一**，同时在MATH数据集以及CMATH上也表现优异，处于13B模型顶尖水平。
 
-- **Skywork-13B-MM**多模态模型支持用户输入图片信息进行问答，对话等任务。天工多模态团队多模态大模型在9月1号登顶MME多模态测评榜单，在此之后持续增强中文场景的多模态能力，本次开源的是天工13B的多模态大模型Skywork-13B-MM，语言模型基座为Skywork-13B-Chat。本次开源版本着重建设中文多模态能力**在CCBench排名第一**，大幅领先目前的SOTA模型InternLM-XComposer-VL和Qwen-VL-Chat。
+- **Skywork-13B-MM**多模态模型支持用户输入图片信息进行问答，对话等任务。
 
 - **Skywork/Skypile-150B**数据集是根据我们经过精心过滤的数据处理流程从中文网页中筛选出的高质量数据。本次开源的数据集大小约为600GB，总的token数量约为**150B**，是目前**开源最大中文数据集**。
 
@@ -94,8 +94,17 @@
 ## 数据下载
 |    数据集名称     |    下载地址  |
 |:-------:|:-----------:|
-| Skywork/Skypile-150B |  [Hugging Face地址](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
+| Skywork/Skypile-150B |  🤗[Hugging Face地址](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
 
+## 模型中间存档下载
+
+我们还额外开源了Skywork-13B-Base模型在训练500B，2TB，3.1TB tokens的模型存档供社区使用，这对研究大模型的能力是如何进化的非常有帮助。
+
+| 模型 | 下载地址 |
+| --------- | ------ | 
+| Skywork-13B-Base-500B      |  🤗[Skywork-13B-Base-500B](https://huggingface.co/Skywork/Skywork-13B-Base-500B)|
+| Skywork-13B-Base-2TB      |  🤗[Skywork-13B-Base-2TB](https://huggingface.co/Skywork/Skywork-13B-Base-2TB)|
+| Skywork-13B-Base-3.1TB      |  🤗[Skywork-13B-Base-3.1TB](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
 
 
 # 模型介绍
@@ -246,19 +255,6 @@ Skywork-13B-Math在数学能力相对Base模型进一步加强，我们在主流
 | GAIRMATH-Abel-13B | 66.41  | 17.34            | -       | 
 | MetaMath-13B | 72.30  | 22.40            | -       | 
 | Skywork-13B-Math (ours)   | **72.33** | 16.98 | **77.27**    | 
-
-# Skywork-13B-MM模型评估
-
-## 中文多模态Benchmark评估结果
-我们给出**Skywork-13B-MM**模型在CCBench上模型的详细结果。选择这个测评是因为该测评数据完全使用中文语料，其图像分布更加适配中文场景，能够测评真实的中文场景理解能力。在该测评集上Skywork-13B-MM大幅超过现有的其他模型，平均准确率提高**13.8**以上。
-
-| 模型 | Calligraphy Painting | Cultural Relic | Food & Clothes | Historical Figures | Scenery & Building | Sketch Reasoning | Traditional Show | Overall | 
-|:-----:|:---------:|:--------:|:-------------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| InternLM-XComposer-VL | 50.9 | 53.5 | 42 | 10.3 | 55 | **73.3** | 50 | 47.6 |
-| Qwen-VL-Chat   | 40.4 | 33.3 | 31.9 | 3.4 | 67 | 51.1 | 42.4 | 39.3 |
-| LLaVA-v1.5-13B   | 33.3 | 24.2 | 21 | 3.4 | 28 | **73.3** | 19.7 | 26.5 | 26.5 |
-| Skywork-13B-MM (ours) | **68.0** | **54.3** | **57.1** | **53.4** | **76.5** | 61.1 | **58.3** |  **61.4** |
-
 
 # 快速开始
 我们将模型参数、配置文件、tokenizer等在huggingface和modelscope上进行了开源。
@@ -1099,35 +1095,6 @@ Skywork-13B-Chat：
 
 </details>
 
-## MM模型样例展示
-
-
-<img src="mm/images/west.jpeg" alt="Image" width="314" height="240">
-
-问题：图片中的人物分别是谁？
-
-回答：唐僧、孙悟空、猪八戒、沙僧
-
-<img src="mm/images/wanganshi.jpg" alt="Image" width="320" height="436">
-
-问题：以下对这位历史人物的描述中哪一项是错误的。 A: 他是一位北宋时期的文学家, B: 他曾经任北宋政府的宰相, C: 他提出了“青苗法”等一系列改革政策, D: 是中国古代蹴鞠的发明者
-
-回答：D: 中国古代蹴鞠的发明者
-
-<img src="mm/images/kongbaojiding.jpeg" alt="Image" width="320" height="180">
-
-问题：图中是什么美食？是哪里的特色美食？
-
-回答：这道菜是宫保鸡丁，是中国四川省的特色美食。
-
-
-<img src="mm/images/girl.jpg" alt="Image" width="320" height="379">
-
-问题：介绍一下这幅画的画家？
-
-回答：这幅画的作者是约翰内斯·维米尔（Johannes Vermeer），他是17世纪荷兰黄金时代的一位著名画家。维米尔的作品以细腻的笔触、柔和的色彩和对光影的独特处理而闻名。《戴珍珠耳环的少女》是他最著名的作品之一，描绘了一位年轻女孩戴着珍珠耳环的肖像。这幅画被认为是荷兰黄金时代绘画的杰作之一，也是维米尔最具代表性的作品之一。
-
-</details>
 
 # 量化部署
 
@@ -1238,6 +1205,7 @@ export DATA_CACHE_DIR=data_cache/sft_train_demo
 bash bash_scripts/skywork_13b_sft_lora.sh
  
 ```
+
 
 
 # 社区和生态

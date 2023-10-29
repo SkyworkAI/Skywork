@@ -45,7 +45,7 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 
 - **Skywork-13B-Math**: This model has undergone specialized training to enhance its mathematical abilities. In the 13B-scale model, the Skywork-13B-Math model ranked 1st in the GSM8K benchmark, and it also performed exceptionally well on the MATH and CMATH benchmarks, placing it among the top-level 13B models.
 
-- **Skywork-13B-MM**:  This is a multimodal model that allows users to utilize image information for tasks like Q&A and dialogue. It's a project of the Skywork multimodal team, which ranked 1st on the MME multimodal evaluation leaderboard on September 1. Since then, the team has been working diligently to improve the multimodal capabilities in Chinese scenarios. The model being open-sourced is Skywork-13B-MM, a language model based on Skywork-13B-Chat. This version was designed with a focus on enhancing Chinese multimodal capabilities. It significantly outperforms the current SOTA models, InternLM-XComposer-VL and Qwen-VL-Chat, on the Chinese evaluation set of CCBench.
+- **Skywork-13B-MM**:  This is a multimodal model that allows users to utilize image information for tasks like Q&A and dialogue. 
 
 - **Skywork/Skypile-150B**: This dataset is a collection of high-quality data extracted from Chinese web pages through our carefully curated data processing pipeline. The size of this open-source dataset is approximately 600GB, with a total token count of around 150 billion. It is one of the largest publicly available Chinese datasets.
 
@@ -86,6 +86,19 @@ If you are interested in more training and evaluation details, please refer to o
 |    Data    |    Download URL | 
 |:-------:|:-----------:|
 | Skywork/Skypile-150B |  [Hugging Face URL](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
+
+
+
+## Download of Intermediate Model Checkpoints
+
+We have also open-sourced the Skywork-13B-Base model and provided the model checkpoints trained on 500B, 2TB, and 3.1TB tokens for community research into the evolution process of large language model capabilities.
+
+| Model | Download URL |
+| --------- | ------ | 
+| Skywork-13B-Base-500B      |  🤗[Skywork-13B-Base-500B](https://huggingface.co/Skywork/Skywork-13B-Base-500B)|
+| Skywork-13B-Base-2TB      |  🤗[Skywork-13B-Base-2TB](https://huggingface.co/Skywork/Skywork-13B-Base-2TB)|
+| Skywork-13B-Base-3.1TB      |  🤗[Skywork-13B-Base-3.1TB](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
+
 
 # Skywork-13B Introduction
 
@@ -243,19 +256,6 @@ Skywork-13B-Math has further enhanced mathematical capabilities compared to the 
 | GAIRMATH-Abel-13B | 66.41  | 17.34            | -       | 
 | MetaMath-13B | 72.30  | 22.40            | -       | 
 | Skywork-13B-Math (ours)   | **72.33** | 16.98 | **77.27**    | 
-
-## Evaluation of Skywork-13B-MM 
-
-## Results on CCBench
-We provide detailed results for the Skywork-13B-MM model on CCBench. The reason for choosing this evaluation is that the data of this evaluation is completely using Chinese corpus, its image distribution is more suitable for Chinese scenarios, and it can evaluate the real Chinese scenario understanding ability. On this evaluation set, Skywork-13B-MM significantly surpasses existing other models, with the average accuracy rate increased by more than 13.8.
-
-| model | Calligraphy Painting | Cultural Relic | Food & Clothes | Historical Figures | Scenery & Building | Sketch Reasoning | Traditional Show | Overall | 
-|:-----:|:---------:|:--------:|:-------------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| InternLM-XComposer-VL | 50.9 | 53.5 | 42 | 10.3 | 55 | **73.3** | 50 | 47.6 |
-| Qwen-VL-Chat   | 40.4 | 33.3 | 31.9 | 3.4 | 67 | 51.1 | 42.4 | 39.3 |
-| LLaVA-v1.5-13B   | 33.3 | 24.2 | 21 | 3.4 | 28 | **73.3** | 19.7 | 26.5 | 26.5 |
-| Skywork-13B-MM (ours) | **68.0** | **54.3** | **57.1** | **53.4** | **76.5** | 61.1 | **58.3** |  **61.4** |
-
 
 # Quickstart
 We have open-sourced the model parameters, configuration files, tokenizer, and more on Huggingface and Modelscope.
@@ -1095,50 +1095,6 @@ Skywork-13B-Chat：
 `````
 
 </details>
-
-## MM Model Output Examples
-<img src="mm/images/west.jpeg" alt="Image" width="314" height="240">
-
-问题：图片中的人物分别是谁？
-
-(Question: Who are the people in the picture respectively?)
-
-回答：唐僧、孙悟空、猪八戒、沙僧
-(Answer: Tang Sanzang, Sun Wukong, Zhu Bajie, Sha Wujing)
-
-<img src="mm/images/wanganshi.jpg" alt="Image" width="320" height="436">
-
-问题：以下对这位历史人物的描述中哪一项是错误的。 A: 他是一位北宋时期的文学家, B: 他曾经任北宋政府的宰相, C: 他提出了“青苗法”等一系列改革政策, D: 是中国古代蹴鞠的发明者
-
-(Question: Which of the following descriptions of this historical figure is incorrect?
-A: He was a literary scholar during the Northern Song Dynasty,
-B: He once served as the prime minister of the Northern Song Dynasty government,
-C: He proposed a series of reform policies such as the "Qingmiao Law",
-D: He is the inventor of ancient Chinese football.)
-
-
-回答：D: 中国古代蹴鞠的发明者
-
-(Answer: D: The inventor of ancient Chinese football)
-
-<img src="mm/images/kongbaojiding.jpeg" alt="Image" width="320" height="180">
-
-问题：图中是什么美食？是哪里的特色美食？
-(Question: What is the delicacy in the picture? Where is it a special delicacy?)
-
-回答：这道菜是宫保鸡丁，是中国四川省的特色美食。
-
-(Answer: This dish is Kung Pao Chicken, which is a special delicacy in Sichuan Province, China.)
-
-<img src="mm/images/girl.jpg" alt="Image" width="320" height="379">
-
-问题：介绍一下这幅画的画家？
-
-(Question: Can you introduce the painter of this painting?)
-
-回答：这幅画的作者是约翰内斯·维米尔（Johannes Vermeer），他是17世纪荷兰黄金时代的一位著名画家。维米尔的作品以细腻的笔触、柔和的色彩和对光影的独特处理而闻名。《戴珍珠耳环的少女》是他最著名的作品之一，描绘了一位年轻女孩戴着珍珠耳环的肖像。这幅画被认为是荷兰黄金时代绘画的杰作之一，也是维米尔最具代表性的作品之一。
-
-(Answer: The author of this painting is Johannes Vermeer, a famous painter of the Dutch Golden Age in the 17th century. Vermeer's works are known for their delicate strokes, soft colors, and unique handling of light and shadow. "Girl with a Pearl Earring" is one of his most famous works, depicting a portrait of a young girl wearing a pearl earring. This painting is considered one of the masterpieces of Dutch Golden Age painting and one of Vermeer's most representative works.)
 
 # Quantization
 
