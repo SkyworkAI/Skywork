@@ -243,6 +243,10 @@ We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and 
 | **CMMLU**   |   49.5   | 69.3    | 65.9        |  63.3   | 64.2 | -   |  61.8   |
 | **MMLU**   |   51.6   | 58.0    | 72.5       |  68.8   | - | -   |  62.1   |
 
+## Reproduction
+
+For your reproduction of the model performance on benchmark datasets, we provide scripts for you to reproduce the results. Check [eval/EVALUATION.md](eval/EVALUATION.md) for more information. Note that the reproduction may lead to slight differences from our reported results.
+
 ## Evaluation of Skywork-13B-Math
 Skywork-13B-Math has further enhanced mathematical capabilities compared to the Base model. We conducted evaluations on mainstream mathematical related benchmarks, GSM8K, MATH, and CMATH. The results show that in the 13B scale model, our model ranked 1st in the GSM8K and CMATH benchmarks, and is also at the forefront in the MATH benchmark.
 
