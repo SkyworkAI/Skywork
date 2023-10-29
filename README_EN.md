@@ -51,10 +51,10 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 
 - In addition, we have also disclosed the evaluation methods, data distribution studies, and training infrastructure optimization plans used in training the Skywork-13B model. We hope that these open-source materials can further inspire the community's understanding of large-scale model pre-training and drive the realization of Artificial General Intelligence (AGI).
 
-If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report), [Skymath](https://arxiv.org/skywork-tech-report) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
+If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
  
 # News and Updates
-* 2023.10.30  We release the **Skywork-13B**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** model, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
+* 2023.10.30  We release the **Skywork-13B-Base** and  **Skywork-13B-Math** models, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
 
 
 # Table of contents
@@ -67,7 +67,7 @@ If you are interested in more training and evaluation details, please refer to o
 - [🚀Quantization](#Quantization)
 - [🛫Fine-tuning](#Fine-tuning)
 - [🍀Community and Ecosystem](#Community-and-Ecosystem)
-- [⚠️Declaration and License Aggrement](#Declaration-and-License-Aggrement)
+- [⚠️Declaration and License Agreement](#Declaration-and-License-Agreement)
 - [🤝Contact Us and Citation](#Contact-Us-and-Citation)
 
 
@@ -77,9 +77,9 @@ If you are interested in more training and evaluation details, please refer to o
 |         | Huggingface Base Model   | Huggingface Quantized Model |  Modelscope Base Model   | Modelscope Quantized Model |
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
-| **Skywork-13B-Chat**      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Chat](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat) | 🤖 [Skywork-13B-Chat-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat-8bits) |
+| **Skywork-13B-Chat**      | 🤗coming soon | 🤗coming soon | 🤖coming soon | 🤖coming soon |
 | **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |
-| **Skywork-13B-MM**      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | - | 🤖 [Skywork-13B-MM](https://www.modelscope.cn/models/skywork/Skywork-13B-MM) | - |
+| **Skywork-13B-MM**      | 🤗coming soon | - | 🤖coming soon | - |
 
 
 ## Download URL of Skypile
@@ -159,7 +159,7 @@ Skypile-150B dataset is a collection of Chinese data. The pages contain processe
 ### Sensitive information and bias
 Although it has undergone strict cleaning and filtering, since it is built on a publicly accessible webpage established by Skypile-150B, it may still contain some sensitive information such as email addresses, phone numbers, or IP addresses. Therefore, users need to be careful and perform necessary additional filtering and cleaning before using the data.
 
-### License Aggrement
+### License Agreement
 The use of data must comply with our License and must not be used for any purpose that poses a threat to national and social security or violates the law.
 
 # Model Evaluation
@@ -1261,7 +1261,7 @@ bash bash_scripts/skywork_13b_sft_lora.sh
 ### Large Model Experience Platform
 The [MindSpore Large Model Platform](​https://xihe.mindspore.cn) is based on the MindSpore AI framework, MindFormers large model development suite, and Ascend hardware capabilities, opening the [Skywork-13B](https://xihe.mindspore.cn/modelzoo/skywork_13b) large model capabilities to the public. Everyone is welcome to use it.
 
-# Declaration and License Aggrement
+# Declaration and License Agreement
 
 
 ## Declaration
@@ -1270,7 +1270,7 @@ We hereby declare that the Skywork model should not be used for any activities t
 
 We have done our utmost to ensure the compliance of the data used during the model's training process. However, despite our extensive efforts, due to the complexity of the model and data, there may still be unpredictable risks and issues. Therefore, if any problems arise as a result of using the Skywork open-source model, including but not limited to data security issues, public opinion risks, or any risks and problems arising from the model being misled, abused, disseminated, or improperly utilized, we will not assume any responsibility.
 
-## License Aggrement
+## License Agreement
 
 The community usage of Skywork model requires [Skywork Community License](https://github.com/SkyworkAI/Skywork/blob/main/Skywork%20Community%20License.pdf). The Skywork model supports commercial use. If you plan to use the Skywork model or its derivatives for commercial purposes, you must abide by terms and conditions within [Skywork Community License](https://github.com/SkyworkAI/Skywork/blob/main/Skywork%20Community%20License.pdf).
 

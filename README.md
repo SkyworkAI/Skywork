@@ -62,7 +62,7 @@
 如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](https://arxiv.org/skywork-tech-report)，[Skymath](https://arxiv.org/abs/2310.16713)论文，[SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf)论文。
 
 # 🔥 更新信息
-* 2023.10.30  我们开源了**Skywork-13B-Base**， **Skywork-13B-Chat** 和 **Skywork-13B-Math**，**Skywork-13B-MM** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
+* 2023.10.30  我们开源了**Skywork-13B-Base** 和 **Skywork-13B-Math** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
 
 
 # 📖目录
@@ -86,9 +86,9 @@
 |         | Huggingface基础模型   | Huggingface量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
-| **Skywork-13B-Chat**      | 🤗 [Skywork-13B-Chat](https://huggingface.co/Skywork/Skywork-13B-Chat) | 🤗 [Skywork-13B-Chat-8bits](https://huggingface.co/Skywork/Skywork-13B-Chat-8bits) | 🤖[Skywork-13B-Chat](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat) | 🤖 [Skywork-13B-Chat-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Chat-8bits) |
+| **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |
 | **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |
-| **Skywork-13B-MM**      | 🤗 [Skywork-13B-MM](https://huggingface.co/Skywork/Skywork-13B-MM) | - | 🤖 [Skywork-13B-MM](https://www.modelscope.cn/models/skywork/Skywork-13B-MM) | - |
+| **Skywork-13B-MM**      | 🤗敬请期待 | - | 🤖敬请期待 | - |
 
 
 ## 数据下载
