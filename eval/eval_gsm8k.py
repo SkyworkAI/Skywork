@@ -91,7 +91,7 @@ def extract_answer(text):
         return INVALID_ANS
 
 def is_correct(completion, answer):
-    completion = completion.split('<|endoftext|>')[0]
+    completion = completion.split('</s>')[0]
     completion = completion.split('\n\n\n')[0]
     completion = completion.split("\n\n")[0]
     completion = completion.split("Question:")[0]

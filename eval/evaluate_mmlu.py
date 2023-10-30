@@ -298,7 +298,7 @@ if __name__ == "__main__":
         "--checkpoint-path",
         type=str,
         help="Checkpoint path",
-        default="/data/shared/public/liang.zhao/skywork-13b-models/skywork-13b-base/",
+        default="",
     )
     parser.add_argument("-s", "--seed", type=int, default=1234, help="Random seed")
     parser.add_argument("--gpu", type=int, default=0, help="gpu id")
