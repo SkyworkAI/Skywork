@@ -8,9 +8,8 @@
 
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="https://arxiv.org/" target="_blank">Tech Report</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="https://github.com/SkyworkAI/Skywork/blob/main/Skywork_13b_tech_report.pdf" target="_blank">Tech Report</a>
 </p>
-
 
 <div align="center">
 
@@ -51,7 +50,7 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 
 - In addition, we have also disclosed the evaluation methods, data distribution studies, and training infrastructure optimization plans used in training the Skywork-13B model. We hope that these open-source materials can further inspire the community's understanding of large-scale model pre-training and drive the realization of Artificial General Intelligence (AGI).
 
-If you are interested in more training and evaluation details, please refer to our [technical report](https://arxiv.org/skywork-tech-report), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
+If you are interested in more training and evaluation details, please refer to our [technical report](https://github.com/SkyworkAI/Skywork/blob/main/Skywork_13b_tech_report.pdf), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
  
 # News and Updates
 * 2023.10.30  We release the **Skywork-13B-Base** and  **Skywork-13B-Math** models, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
@@ -1249,9 +1248,8 @@ The community usage of Skywork model requires [Skywork Community License](https:
 If you find our work helpful, please feel free to cite our paper~
 ```
 @article{skyworktechreport,
-  title={},
-  author={},
-  journal={arXiv preprint arXiv:},
+  title={Skywork: A More Open Bilingual Foundation Model},
+  author={Tianwen Wei, Liang Zhao, Lichang Zhang, Bo Zhu, Lijie Wang, Haihua Yang, Biye Li, Cheng Cheng, Weiwei Lü, Rui Hu,Chenxia Li, Liu Yang, Xilin Luo, Xuejie Wu, Lunan Liu, Wenjun Cheng, Peng Cheng, Jianhao Zhang, Xiaoyu Zhang, Lei Lin, Xiaokun Wang, Yutuan Ma, Chuanhai Dong, Yanqi Sun, Yifu Chen, Yongyi Peng, Xiaojuan Liang, Shuicheng Yan, Han Fang, Yahui Zhou},
   year={2023}
 }
 ```
