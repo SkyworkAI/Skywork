@@ -1260,7 +1260,7 @@ If you find our work helpful, please feel free to cite our paper~
   title={SkyMath: Technical Report},
   author={Liu Yang, Haihua Yang, Wenjun Cheng, Lei Lin, Chenxia Li, Yifu Chen, Lunan Liu, Jianfei Pan, Tianwen Wei, Biye Li, Liang Zhao, Lijie Wang, Bo Zhu, Guoliang Li, Xuejie Wu, Xilin Luo, Rui Hu},
   journal={arXiv preprint arXiv: 2310.16713},
-  url={https://arxiv.org/abs/2309.10305},
+  url={https://arxiv.org/abs/2310.16713},
   year={2023}
 }
 ```
