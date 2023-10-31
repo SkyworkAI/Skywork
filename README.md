@@ -6,7 +6,7 @@
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="https://github.com/SkyworkAI/Skywork/blob/main/Skywork_13b_tech_report.pdf" target="_blank">Tech Report</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
 </p>
 
 
@@ -59,9 +59,11 @@
 
 - 除此之外，我们还公开了训练Skywork-13B模型中使用的评估方法、数据配比研究和训练基础设施调优方案等信息。我们希望这些开源内容能够进一步启发社区对于大型模型预训练的认知，并推动人工智能通用智能（AGI）的实现。
 
-如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](https://github.com/SkyworkAI/Skywork/blob/main/Skywork_13b_tech_report.pdf)，[Skymath](https://arxiv.org/abs/2310.16713)论文，[SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf)论文。
+如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](http://arxiv.org/abs/2310.19341)，[Skymath](https://arxiv.org/abs/2310.16713)论文，[SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf)论文。
 
 # 🔥 更新信息
+* 2023.10.31 我们的技术报告 [Skywork: A More Open Bilingual Foundation Model](http://arxiv.org/abs/2310.19341) 在arxiv可见，里面有更详细的评估方法，评测对比和技术细节。
+
 * 2023.10.30  我们开源了**Skywork-13B-Base** 和 **Skywork-13B-Math** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
 
 
@@ -1252,10 +1254,13 @@ The community usage of Skywork model requires [Skywork Community License](https:
 # 引用和联系我们
 如果您觉得我们的工作对您有帮助，欢迎引用我们的论文~
 ```
-@article{skyworktechreport,
-  title={Skywork: A More Open Bilingual Foundation Model},
-  author={Tianwen Wei, Liang Zhao, Lichang Zhang, Bo Zhu, Lijie Wang, Haihua Yang, Biye Li, Cheng Cheng, Weiwei Lü, Rui Hu,Chenxia Li, Liu Yang, Xilin Luo, Xuejie Wu, Lunan Liu, Wenjun Cheng, Peng Cheng, Jianhao Zhang, Xiaoyu Zhang, Lei Lin, Xiaokun Wang, Yutuan Ma, Chuanhai Dong, Yanqi Sun, Yifu Chen, Yongyi Peng, Xiaojuan Liang, Shuicheng Yan, Han Fang, Yahui Zhou},
-  year={2023}
+@misc{wei2023skywork,
+      title={Skywork: A More Open Bilingual Foundation Model}, 
+      author={Tianwen Wei and Liang Zhao and Lichang Zhang and Bo Zhu and Lijie Wang and Haihua Yang and Biye Li and Cheng Cheng and Weiwei Lü and Rui Hu and Chenxia Li and Liu Yang and Xilin Luo and Xuejie Wu and Lunan Liu and Wenjun Cheng and Peng Cheng and Jianhao Zhang and Xiaoyu Zhang and Lei Lin and Xiaokun Wang and Yutuan Ma and Chuanhai Dong and Yanqi Sun and Yifu Chen and Yongyi Peng and Xiaojuan Liang and Shuicheng Yan and Han Fang and Yahui Zhou},
+      year={2023},
+      eprint={2310.19341},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 
