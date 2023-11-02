@@ -62,6 +62,8 @@
 如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](http://arxiv.org/abs/2310.19341)，[Skymath](https://arxiv.org/abs/2310.16713)论文，[SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf)论文。
 
 # 🔥 更新信息
+* 2023.11.2 我们将我们构建的评估数据[MOCK_GSM8K_TEST](https://huggingface.co/datasets/Skywork/mock_gsm8k_test)以及中文领域评估数据[ChineseDomainModelingEval](https://huggingface.co/datasets/Skywork/ChineseDomainModelingEval)上传到了huggingface，您如果有评估模型的需求，请下载我们的评估数据集。
+
 * 2023.10.31 我们的技术报告 [Skywork: A More Open Bilingual Foundation Model](http://arxiv.org/abs/2310.19341) 在arxiv可见，里面有更详细的评估方法，评测对比和技术细节。
 
 * 2023.10.30  我们开源了**Skywork-13B-Base** 和 **Skywork-13B-Math** 以及对应模型的量化模型。我们开源了**Skywork/Skypile-150B**数据集，该数据集包含根据中文网页清洗的超过**150亿**高质量中文token，硬盘大小大约600GB，是已知目前最大的开源中文数据集。
@@ -97,6 +99,14 @@
 |    数据集名称     |    下载地址  |
 |:-------:|:-----------:|
 | Skywork/Skypile-150B |  🤗[Hugging Face地址](https://huggingface.co/datasets/Skywork/SkyPile-150B)  |
+
+
+## 评估集下载
+|    数据集名称     |    下载地址  |
+|-------|:-----------:|
+| Skywork/ChineseDomainModelingEval |  🤗[Hugging Face地址](https://huggingface.co/datasets/Skywork/ChineseDomainModelingEval)  |
+| Skywork/mock_gsm8k_test |  🤗[Hugging Face地址](https://huggingface.co/datasets/Skywork/mock_gsm8k_test)  |
+
 
 ## 模型中间存档下载
 
@@ -183,15 +193,15 @@ Skypile-150B 数据集为中文数据。页面中包含的经过处理和清理�
 
 # 模型评估
 ## 领域数据困惑度评估
-语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在模型训练中预测下一个词的概率一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
+语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在语言模型建模中一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
 
 ```math
 loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
 ```
 
-其中$`n`$是文档的长度，即token数，$`p_i`$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘则为生成该文档的概率，如此我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$`n`$，这样就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方便后续提到的loss和ppl为模型标准化后的loss和perplexity。
+其中$`n`$是文档的长度，即token数，$`p_i`$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘为生成该文档的概率，这样我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$`n`$就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方便，后续提到的loss和ppl为模型标准化后的loss和perplexity。
 
-基于上述分析，我们对对多个领域筛选出**2023年9月份新发布**的几百到上千篇高质量文章，并人工进行了核对。保证所有的测试数据不在天工模型以及其他所有模型的训练集中，并且测试数据的来源也足够广泛，质量也高。我们可以选取当前最新的文章评测不同模型的ppl，模型很难作弊。并且我们会持续按照最新数据评测各个模型效果，动态更新各个模型能力。
+基于上述分析，我们对多个领域筛选出**2023年9月份新发布**的几百到上千篇高质量文章，并人工进行了核对。保证所有的测试数据不在天工模型以及其他所有模型的训练集中，并且测试数据的来源也足够广泛，质量也高。我们可以选取当前最新的文章评测不同模型的ppl，模型很难作弊。并且我们会持续按照最新数据评测各个模型效果，动态更新各个模型能力。
 下图列出了不同开源模型，天工Skywork-13B-Base取得最优效果，证明了我们的Base模型的基础能力处于国内开源模型中文最强水平。
 
 |                  | 技术文章  | 电影评论 | 政务报告  | 游戏  | 金融 | 通用领域 | Average |
@@ -210,7 +220,7 @@ loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
 | Skywork-13B-Base (ours) | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    |
 
 ### 评测数据和评测脚本
-我们将评测数据和评测脚本也进行了开源，运行下面命令则可以复现我们的结果。
+我们将评测数据和评测脚本也进行了开源，您需要在[hugginface](https://huggingface.co/Skywork)上下载我们的评估数据后，将评估数据存放在data/eval_loss目录下，运行下面命令则可以复现我们的结果。
 ```
 bash bash_scripts/skywork_eval_loss.sh
 ```
@@ -230,9 +240,6 @@ bash bash_scripts/skywork_eval_loss.sh
 | Baichuan-13B-Base | 52.4  | 55.3            | 51.6      | 26.6   |
 | Baichuan-2-13B-Base | 58.1  | 62.0            | 59.2       | 52.3  |
 | Skywork-13B-Base (ours)   | 60.6 | 61.8 | 62.1    | 55.8 | 
-
-### Benchmark评估脚本
-Benchmark评估脚本在eval目录下。
 
 ## Benchmark评估详细结果
 我们给出**Skywork-13B-Base**模型在C-Eval，CMMLU，MMLU上模型的详细结果。
