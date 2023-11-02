@@ -53,6 +53,8 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 If you are interested in more training and evaluation details, please refer to our [technical report](http://arxiv.org/abs/2310.19341), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
  
 # News and Updates
+* 2023.11.2 We have uploaded the evaluation data we built, [MOCK_GSM8K_TEST](https://huggingface.co/datasets/Skywork/mock_gsm8k_test), and the Chinese domain evaluation data [ChineseDomainModelingEval](https://huggingface.co/datasets/Skywork/ChineseDomainModelingEval) to huggingface. If you need to evaluate LLMs, please download our evaluation dataset.
+
 * 2023.10.31 Our technical report [Skywork: A More Open Bilingual Foundation Model](http://arxiv.org/abs/2310.19341) is available on arXiv, which includes more detailed evaluation methods, result comparisons, and technical details.
 
 * 2023.10.30  We release the **Skywork-13B-Base** and  **Skywork-13B-Math** models, as well as quantized versions of each model to support deployment and inference on consumer-grade GPUs. We  open-source the Skywork/Skypile-150B dataset. This dataset contains over 150 billion high-quality tokens cleaned from Chinese web pages, making it the largest open-source Chinese dataset currently known.
@@ -231,9 +233,6 @@ We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, M
 | Baichuan-13B-Base | 52.4  | 55.3            | 51.6      | 26.6   |
 | Baichuan-2-13B-Base | 58.1  | 62.0            | 59.2       | 52.3  |
 | Skywork-13B-Base (ours)   | 60.6 | 61.8 | 62.1    | 55.8 | 
-
-### benchmark evaluation scripts
-The benchmark evaluation script is under the eval directory.
 
 ## Detailed Benchmark Results
 We provide detailed results of the Skywork-13B-Base model on C-EVAL, CMMLU, and MMLU.
