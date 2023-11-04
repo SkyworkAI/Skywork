@@ -220,7 +220,7 @@ loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
 | Skywork-13B-Base (ours) | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    |
 
 ### 评测数据和评测脚本
-我们将评测数据和评测脚本也进行了开源，您需要在[hugginface](https://huggingface.co/Skywork)上下载我们的评估数据后，将评估数据存放在data/eval_loss目录下，运行下面命令则可以复现我们的结果。
+我们将评测数据和评测脚本也进行了开源，您需要在[Hugging Face](https://huggingface.co/Skywork)上下载我们的评估数据后，将评估数据存放在data/eval_loss目录下，运行下面命令则可以复现我们的结果。
 ```
 bash bash_scripts/skywork_eval_loss.sh
 ```
