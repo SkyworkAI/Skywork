@@ -77,7 +77,7 @@ If you are interested in more training and evaluation details, please refer to o
 # Download URL
 ## Download URL of Skywork Models
 
-|         | Huggingface Base Model   | Huggingface Quantized Model |  Modelscope Base Model   | Modelscope Quantized Model |
+|         | HuggingFace Base Model   | HuggingFace Quantized Model |  ModelScope Base Model   | ModelScope Quantized Model |
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
 | **Skywork-13B-Chat**      | 🤗coming soon | 🤗coming soon | 🤖coming soon | 🤖coming soon |
@@ -184,7 +184,7 @@ The use of data must comply with our License and must not be used for any purpos
 The main goal of training a language model is to improve the accuracy of predicting the next word. With this in mind, we believe that evaluating the ability of a language model to generate articles in different domains is a crucial way to assess the performance of large-scale models. During model training, the likelihood of predicting the next word is typically measured using the Cross Entropy loss function. The overall loss function is calculated as the average of the losses when predicting the correct word at each position, which can be represented as:
 
 ```math
-loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
+loss = -\sum^{n}_{i=1} log(p_i) / n = -log( \prod_{i=1}^n p_i) / n
 ```
 
 Where $`n`$ is the length of the document, i.e., the number of tokens, and $`p_i`$ is the probability of the label word at position $i$. We know that the product of the probabilities of the label words at each position in the document is equal to the probability of generating that document. In this way, we connect the loss with the probability of generating the document. Since different models use different tokenizers and have different numbers of tokens, we multiply the loss function by the number of tokens $`n`$. This way, we only consider the part related to the probability of generating the article, and different models can be compared. We normalize the loss and convert it to perplexity by taking the exponential, making the differences between models more pronounced. For readability, the terms "loss" and "ppl" mentioned later refer to the normalized loss and perplexity of the model.
@@ -262,7 +262,7 @@ Skywork-13B-Math has further enhanced mathematical capabilities compared to the 
 | Skywork-13B-Math (ours)   | **72.33** | 16.98 | **77.27**    | 
 
 # Quickstart
-We have open-sourced the model parameters, configuration files, tokenizer, and more on Huggingface and Modelscope.
+We have open-sourced the model parameters, configuration files, tokenizer, and more on Hugging Face and ModelScope.
 ## Requirements
 - Python 3.8 and above
 - Pytorch 2.0 and above 
@@ -272,7 +272,7 @@ Skywork-13B-Base model, Skywork-13B-Chat model, and Skywork-13B-Math model run t
 ```shell
 pip install -r requirements.txt 
 ```
-## Demonstration of Huggingface Model Inference
+## Demonstration of Hugging Face Model Inference
 
 
 ### Base Model Inference
