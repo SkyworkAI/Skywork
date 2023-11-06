@@ -87,7 +87,7 @@
 ## 模型下载
 
 
-|         | Huggingface基础模型   | Huggingface量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
+|         | HuggingFace基础模型   | HuggingFace量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
 |:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
 | **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |
@@ -196,7 +196,7 @@ Skypile-150B 数据集为中文数据。页面中包含的经过处理和清理�
 语言模型训练的本质上是让预测下一个词更准确。基于这个认知，我们认为评估基础大模型一个重要的方式是评估在各大领域上语言模型生成文章的概率。在语言模型建模中一般使用Cross Entropy损失函数，整体的损失函数为每个位置预测真实词损失的平均，则有：
 
 ```math
-loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
+loss = -\sum^{n}_{i=1} log(p_i) / n = -log( \prod_{i=1}^n p_i) / n
 ```
 
 其中$`n`$是文档的长度，即token数，$`p_i`$是位置i上真实词的概率，我们知道文档中每一个位置上真实词的概率的联乘为生成该文档的概率，这样我们就将loss和生成文章的概率联系在了一起。而不同模型因为使用的分词器不同，具有不同的token数，因此对损失函数乘以token数目$`n`$就仅考虑生成文章的概率部分，不同模型也可以进行比较。我们将标准化后loss取指数转换成perplexity，使得模型的差异更加可读。为了阅读方便，后续提到的loss和ppl为模型标准化后的loss和perplexity。
@@ -220,7 +220,7 @@ loss = \sum^{n}_{i=1} log(p_i) / n = log( \prod_{i=1}^n p_i) / n
 | Skywork-13B-Base (ours) | **11.58** | **21.84** | **4.76**  | 17.28 | **4.92**    | **6.82**    | **9.42**    |
 
 ### 评测数据和评测脚本
-我们将评测数据和评测脚本也进行了开源，您需要在[hugginface](https://huggingface.co/Skywork)上下载我们的评估数据后，将评估数据存放在data/eval_loss目录下，运行下面命令则可以复现我们的结果。
+我们将评测数据和评测脚本也进行了开源，您需要在[Hugging Face](https://huggingface.co/Skywork)上下载我们的评估数据后，将评估数据存放在data/eval_loss目录下，运行下面命令则可以复现我们的结果。
 ```
 bash bash_scripts/skywork_eval_loss.sh
 ```
@@ -270,7 +270,8 @@ Skywork-13B-Math在数学能力相对Base模型进一步加强，我们在主流
 | Skywork-13B-Math (ours)   | **72.33** | 16.98 | **77.27**    | 
 
 # 快速开始
-我们将模型参数、配置文件、tokenizer等在huggingface和modelscope上进行了开源。
+我们将模型参数、配置文件、tokenizer等在Hugging Face和ModelScope上进行了开源。
+
 ## 依赖安装
 - Python 3.8及以上版本
 - Pytorch 2.0及以上版本
@@ -280,7 +281,7 @@ Skywork-13B-Base模型，Skywork-13B-Chat模型和Skywork-13B-Math模型运行�
 ```shell
 pip install -r requirements.txt 
 ```
-## Huggingface模型测试
+## Hugging Face模型测试
 
 
 ### Base 模型推理
@@ -1226,7 +1227,7 @@ bash bash_scripts/skywork_13b_sft_lora.sh
 # 社区和生态
 ## 华为昇腾
 ### MindSpore框架
-[MindFormers]( https://gitee.com/mindspore/mindformers)是一个基于昇思框架 (MindSpore) 并支持大模型训练、微调、评估、推理、部署的全流程开发套件，[Skywork-13B]( https://gitee.com/mindspore/mindformers/tree/dev/research/skywork)模型已集成于此套件，支持用户基于昇腾AI硬件算力进行模型微调、部署。具体使用方式可见我们在昇思平台上的[README]( https://gitee.com/mindspore/mindformers/tree/dev/research/skywork/skywork.md)。
+[MindFormers]( https://gitee.com/mindspore/mindformers)是一个基于昇思框架 (MindSpore) 并支持大模型训练、微调、评估、推理、部署的全流程开发套件，[Skywork-13B](https://gitee.com/mindspore/mindformers/tree/dev/research/skywork)模型已集成于此套件，支持用户基于昇腾AI硬件算力进行模型微调、部署。具体使用方式可见我们在昇思平台上的[README]( https://gitee.com/mindspore/mindformers/tree/dev/research/skywork/skywork.md)。
 
 ### 大模型体验平台
 [昇思大模型平台](​https://xihe.mindspore.cn)基于昇思MindSpore AI框架、MindFormers大模型开发套件与昇腾硬件算力，将[Skywork-13B](https://xihe.mindspore.cn/modelzoo/skywork_13b)大模型能力开放给公众，欢迎大家使用。
