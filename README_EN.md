@@ -240,7 +240,7 @@ If you need to calculate the normalized loss for Model A and Skywork model, you 
 
 **Q4**: Why is the Average Ppl inconsistent with the average Ppl of each domain?
 
-**A4**: We calculate Average Ppl by averaging the losses of all documents and then converting it to Ppl using an exponential function. This is done to avoid having some domains with excessively high Ppl, which would negatively impact the overall results. The idea behind Average Ppl is to consider all documents as a cohesive collection, representing the overall Ppl (people) of the document.
+**A4**: We calculate Average Ppl by averaging the losses of all documents and then converting it to Ppl using an exponential function. This is done to avoid having some domains with excessively high Ppl, which would negatively impact the overall results. The idea behind Average Ppl is to consider all documents as a cohesive collection, representing the overall Ppl of the document.
 
 ## Benchmark Results
 We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, MMLU, CMMLU, and GSM8K. Following the previous evaluation process, we tested the 5-shot results of C-Eval, MMLU, and CMMLU, and the 8-shot results of GSM8K. It can be seen that the Skywork-13B-Base model is among the top models in the Chinese open source model community, performing at an optimal level with the same parameter scale.
