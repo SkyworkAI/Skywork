@@ -6,7 +6,7 @@
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 👾 <a href="https://wisemodel.cn/organization/Skywork" target="_blank">Wisemodel</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
 </p>
 
 
@@ -87,12 +87,12 @@
 ## 模型下载
 
 
-|         | HuggingFace基础模型   | HuggingFace量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | 
-|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
-| **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |
-| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |
-| **Skywork-13B-MM**      | 🤗敬请期待 | - | 🤖敬请期待 | - |
+|         | HuggingFace基础模型   | HuggingFace量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | Wisemodel基础模型 | Wisemodel量化版模型 |
+|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
+| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |👾[Skywork-13B-Base](https://wisemodel.cn/models/Skywork/Skywork-13B-Base) | 👾 [Skywork-13B-Base-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Base-8bits) |
+| **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |👾敬请期待 | 👾敬请期待 |
+| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |👾[Skywork-13B-Math](https://wisemodel.cn/models/Skywork/Skywork-13B-Math) | 👾 [Skywork-13B-Math-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Math-8bits) |
+| **Skywork-13B-MM**      | 🤗敬请期待 | - | 🤖敬请期待 | - |👾敬请期待 | - |
 
 
 ## 数据下载
@@ -224,6 +224,24 @@ loss = -\sum^{n}_{i=1} log(p_i) / n = -log( \prod_{i=1}^n p_i) / n
 ```
 bash bash_scripts/skywork_eval_loss.sh
 ```
+假设我们需要计算A模型和Skywork模型的标准化损失。我们分别对A模型和Skywork模型运行上面脚本，会在各自目录下的result.txt文件中得到两个值，第一个值是loss，第二个值是文档token数。我们将A模型的loss和token数分别记作loss_a和token_a，Skywork模型的loss和token数分别记作loss_s和token_s。那么A模型标准化损失loss_a_norm = loss_a * token_a / token_s。这样就可以对比loss_a_norm和loss_s来对比A模型和Skywork模型的效果。扩展到多个模型同理。
+
+### 评估常见问题
+**Q1**: 为什么要让所有模型的文档长度一样，而不是让分词后token一样？
+
+**A1**: 本质上领域困惑度是衡量不同模型生成高质量文档的概率，概率越大模型效果越好，因此我们需要保证所有模型看到的文档是一样的。此外，因为不同模型使用不同的分词器，分词后的token数目差异很大，以Llama为例，会将汉字切分为3个unicode编码，如果按照分词后token比较的话，那么Llama模型看到的文档长度会比其他模型短，而我们知道文档前面的token loss是更低的，后面token loss更高，因此按照分词后token比较的话会对Llama这种分词更细的模型会不公平。 
+
+**Q2**: 为什么预处理的时候截取max_position_embedding除以3这个长度的文本?
+
+**A2**: 根据问题1我们知道Llama模型一般是将汉字切分成3个字符，为了保证一篇文档输入模型分词后不超过4096的限制，所以我们将文档最大长度设置成了4096/3=1228。在我们对比模型中，Llama模型是对中文切分最细的，所以只要不超过Llama模型的分词长度，其他模型也肯定可以塞得下。 
+
+**Q3**: 不同模型有不同的最大长度，统一用4096是否不公平？
+
+**A3**: 如上所示，我们计算的文档长度是1228个中文汉字，以Qwen为例，训练长度为2K，推理时候可以扩展到8K，并且中英双语模型的压缩率一般在2-3倍，因此1228个中文字符一般只有500-1000个token，远远达到不了2K甚至4K的最大长度限制。 
+
+**Q4**: 为什么Average Ppl和每个领域Ppl平均不一致？
+
+**A4**: 我们计算Average Ppl的方式是将所有文档的loss平均起来，然后取指数转换成Ppl，这样是为了避免有些领域Ppl过分的大，导致整体结果不好看。物理含义是将所有文档看成是一个统一的问题，Average Ppl是在这个文档整体生的Ppl。
 
 ## Benchmark评估
 我们评估了各大权威评测benchmark上的结果作为参考，包括C-Eval，MMLU，CMMLU，GSM8K。遵循之前的评估流程，C-Eval、MMLU、CMMLU测试5-shot结果，GSM8K测试8-shot结果。可以看到Skywork-13B-Base模型在中文开源模型中处于前列，在同等参数规模下为最优水平。

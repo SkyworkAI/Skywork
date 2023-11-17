@@ -6,9 +6,8 @@
 </div> -->
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
-
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 👾 <a href="https://wisemodel.cn/organization/Skywork" target="_blank">Wisemodel</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
 </p>
 
 <div align="center">
@@ -77,13 +76,12 @@ If you are interested in more training and evaluation details, please refer to o
 # Download URL
 ## Download URL of Skywork Models
 
-|         | HuggingFace Base Model   | HuggingFace Quantized Model |  ModelScope Base Model   | ModelScope Quantized Model |
-|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |
-| **Skywork-13B-Chat**      | 🤗coming soon | 🤗coming soon | 🤖coming soon | 🤖coming soon |
-| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |
-| **Skywork-13B-MM**      | 🤗coming soon | - | 🤖coming soon | - |
-
+|         | HuggingFace Base Model   | HuggingFace Quantized Model |  ModelScope Base Model   | ModelScope Quantized Model |  Wisemodel Base Model   | Wisemodel Quantized Model |
+|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
+| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |👾[Skywork-13B-Base](https://wisemodel.cn/models/Skywork/Skywork-13B-Base) | 👾 [Skywork-13B-Base-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Base-8bits) |
+| **Skywork-13B-Chat**      | 🤗coming soon | 🤗coming soon | 🤖coming soon | 🤖coming soon |👾coming soon | 👾coming soon |
+| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |👾[Skywork-13B-Math](https://wisemodel.cn/models/Skywork/Skywork-13B-Math) | 👾 [Skywork-13B-Math-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Math-8bits) |
+| **Skywork-13B-MM**      | 🤗coming soon | - | 🤖coming soon | - |👾coming soon | - |
 
 ## Download URL of Skypile
 |    Data    |    Download URL | 
@@ -216,7 +214,33 @@ We have also open-sourced the data and evaluation scripts. You can reproduce our
 bash bash_scripts/skywork_eval_loss.sh
 ```
 
+If you need to calculate the normalized loss for Model A and Skywork model, you can follow these steps:
 
+1. Run the above script for Model A and Skywork model separately. The results will be stored in the result.txt file in their respective directories.
+2. In the result.txt file, you will find two values for each model: the first value represents the loss, and the second value represents the number of document tokens.
+3. Let's denote the loss and token numbers for Model A as loss_a and token_a, and for Skywork model as loss_s and token_s.
+4. To calculate the normalized loss for Model A (loss_a_norm), loss_a_norm = loss_a * token_a / token_s
+5. By comparing the normalized loss (loss_a_norm) of Model A with the loss (loss_s) of the Skywork model, we can evaluate the effectiveness of both models.
+6. The same approach can be extended to multiple models.
+
+### FAQ in Evaluation
+
+**Q1**: Why should all models have the same document length instead of having the same number of tokens after tokenization?
+
+**A1**: Essentially, domain perplexity measures the probability of different models generating high-quality documents, with higher probability indicating better model performance. Therefore, we need to ensure that all models see the same document. Additionally, since different models use different tokenizers, there can be a significant difference in the number of tokens after tokenization. For example, Llama will split Chinese characters into three Unicode encodings. If we compare the number of tokens after tokenization, the document length seen by Llama will be shorter compared to other models. However, we know that the token loss is lower in the beginning of the document and higher towards the end. Therefore, comparing based on the number of tokens after tokenization would be unfair to models like Llama, which have finer tokenization.
+
+**Q2**: Why do we truncate the text to a length of max_position_embedding divided by 3?
+
+**A2**: As mentioned in the answer to question 1, Llama model generally splits Chinese characters into three characters. To ensure that the maximum length of a document input to the model does not exceed the limit of 4096, we set the maximum document length to 4096/3 = 1228. In our comparison models, Llama has the finest tokenization for Chinese. Therefore, as long as the document length does not exceed the tokenization length of Llama, it will fit in other models as well.
+
+**Q3**: Is it unfair to use a uniform length of 4096 for different models?
+
+**A3**: As explained above, the calculated document length is 1228 Chinese characters. Taking Qwen as an example, the training length is 2K, which can be expanded to 8K during inference. Additionally, the compression ratio of bilingual models is generally 2-3 times. Therefore, 1228 Chinese characters usually only amount to 500-1000 tokens, far from the maximum length limit of 2K or even 4K.
+
+
+**Q4**: Why is the Average Ppl inconsistent with the average Ppl of each domain?
+
+**A4**: We calculate Average Ppl by averaging the losses of all documents and then converting it to Ppl using an exponential function. This is done to avoid having some domains with excessively high Ppl, which would negatively impact the overall results. The idea behind Average Ppl is to consider all documents as a cohesive collection, representing the overall Ppl (people) of the document.
 
 ## Benchmark Results
 We evaluated Skywork-13B-Base on several popular benchmarks, including C-Eval, MMLU, CMMLU, and GSM8K. Following the previous evaluation process, we tested the 5-shot results of C-Eval, MMLU, and CMMLU, and the 8-shot results of GSM8K. It can be seen that the Skywork-13B-Base model is among the top models in the Chinese open source model community, performing at an optimal level with the same parameter scale.
