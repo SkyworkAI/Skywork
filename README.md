@@ -241,7 +241,7 @@ bash bash_scripts/skywork_eval_loss.sh
 
 **Q4**: 为什么Average Ppl和每个领域Ppl平均不一致？
 
-**A4**: 我们计算Average Ppl的方式是将所有文档的loss平均起来，然后取指数转换成Ppl，这样是为了避免有些领域Ppl过分的大，导致整体结果不好看。物理含义是将所有文档看成是一个统一的问题，Average Ppl是在这个文档整体生的Ppl。
+**A4**: 我们计算Average Ppl的方式是将所有文档的loss平均起来，然后取指数转换成Ppl，这样是为了避免有些领域Ppl过分的大，导致整体结果容易受到极端值影响。其物理含义是将所有文档视为一个整体问题，Average Ppl则是针对这整体文档计算出的Ppl。
 
 ## Benchmark评估
 我们评估了各大权威评测benchmark上的结果作为参考，包括C-Eval，MMLU，CMMLU，GSM8K。遵循之前的评估流程，C-Eval、MMLU、CMMLU测试5-shot结果，GSM8K测试8-shot结果。可以看到Skywork-13B-Base模型在中文开源模型中处于前列，在同等参数规模下为最优水平。
