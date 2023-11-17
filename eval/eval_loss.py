@@ -134,7 +134,7 @@ def set_seed(seed: int):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model_path", type=str, default="")
+    parser.add_argument("-m", "--model-path", type=str, default="")
     parser.add_argument("-d", "--dataset", type=str, default="emozilla/pg19")  
     parser.add_argument("-s", "--subset", type=str, default=None) 
     parser.add_argument("-i", "--input-text-field", type=str, default="text")
@@ -144,7 +144,6 @@ if __name__ == '__main__':
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--data-type", type=str, default=None)
     parser.add_argument("--n-gpus", type=int, default=None)
-    parser.add_argument("--aggressive-memory", action="store_true")
     parser.add_argument("--split", type=str, default="train")
 
     args = parser.parse_args()
