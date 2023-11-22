@@ -110,13 +110,7 @@
 
 ## 模型中间存档下载
 
-我们还额外开源了Skywork-13B-Base模型在训练500B，2TB，3.1TB tokens的模型存档供社区使用，这对研究大模型的能力是如何进化的非常有帮助。
-
-| 模型 | 下载地址 |
-| --------- | ------ | 
-| Skywork-13B-Base-500B      |  🤗[Skywork-13B-Base-500B](https://huggingface.co/Skywork/Skywork-13B-Base-500B)|
-| Skywork-13B-Base-2TB      |  🤗[Skywork-13B-Base-2TB](https://huggingface.co/Skywork/Skywork-13B-Base-2TB)|
-| Skywork-13B-Base-3.1TB      |  🤗[Skywork-13B-Base-3.1TB](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
+我们还额外开源了Skywork-13B-Base模型在训练500B，1.5TB，2TB，2.5TB以及3TB tokens的模型中间存档供社区使用，这对研究大模型的能力是如何进化的非常有帮助。模型中间存档可以在[Hugging Face地址](https://huggingface.co/Skywork/Skywork-13B-Base-Intermediate)下载。
 
 
 # 模型介绍
