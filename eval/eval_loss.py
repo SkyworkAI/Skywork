@@ -52,10 +52,9 @@ def compute_loss(tokenized_texts, attention_mask, model, tokenizer, add_start_to
     with torch.no_grad():
         logits = model(tokenized_texts, attention_mask=attention_mask).logits
         logits = logits[:, :-1]
-        attention_mask = attention_mask[:, :-1]
-        loss = loss_func(logits.transpose(1, 2), labels) * attention_mask
+        loss = loss_func(logits.transpose(1, 2), labels) * attention_mask[:, :-1]
 
-    num_tokens = torch.sum(attention_mask).item() 
+    num_tokens = torch.sum(attention_mask).item() - attention_mask.size(0) 
     return torch.sum(loss).item(), num_tokens
 
 def load_model_tokenizer_config():
@@ -74,7 +73,7 @@ def main():
 
     model, tokenizer, config = load_model_tokenizer_config()
 
-    tokenizer.padding_size = "right"
+    tokenizer.padding_side = "right"
     if "qwen-14b" in args.model_path.lower():
         tokenizer.pad_token = '<|extra_0|>'
         tokenizer.eos_token = '<|endoftext|>'

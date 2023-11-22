@@ -110,19 +110,18 @@
 
 ## 模型中间存档下载
 
-我们还额外开源了Skywork-13B-Base模型在训练500B，2TB，3.1TB tokens的模型存档供社区使用，这对研究大模型的能力是如何进化的非常有帮助。
+我们还额外开源了Skywork-13B-Base模型在训练500B，1T，1.5T，2T，2.5T，3T，3.1T tokens的模型存档供社区使用，这对研究大模型的能力是如何进化的非常有帮助。
 
 | 模型 | 下载地址 |
 | --------- | ------ | 
-| Skywork-13B-Base-500B      |  🤗[Skywork-13B-Base-500B](https://huggingface.co/Skywork/Skywork-13B-Base-500B)|
-| Skywork-13B-Base-2TB      |  🤗[Skywork-13B-Base-2TB](https://huggingface.co/Skywork/Skywork-13B-Base-2TB)|
-| Skywork-13B-Base-3.1TB      |  🤗[Skywork-13B-Base-3.1TB](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
+| Skywork-13B-Base-Intermediate     |  🤗[Skywork-13B-Base-Intermediate](https://huggingface.co/Skywork/Skywork-13B-Base-Intermediate)|
+| Skywork-13B-Base-3.1T     |  🤗[Skywork-13B-Base-3.1T](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
 
 
 # 模型介绍
 
 ## 训练数据
-我们精心搭建了数据清洗流程对文本中的低质量数据、有害信息、敏感信息进行清洗过滤。我们的Skywork-13B-Base模型是在清洗后的3.2TB高质量中、英、代码数据上进行训练，其中英文占比52.2%，中文占比39.6%，代码占比8%，在兼顾中文和英文上的表现的同时，代码能力也能有保证。
+我们精心搭建了数据清洗流程对文本中的低质量数据、有害信息、敏感信息进行清洗过滤。我们的Skywork-13B-Base模型是在清洗后的3.2T高质量中、英、代码数据上进行训练，其中英文占比52.2%，中文占比39.6%，代码占比8%，在兼顾中文和英文上的表现的同时，代码能力也能有保证。
 
 |             | 类目         | 百分比 |
 |-------------|------------------|------------|
@@ -170,11 +169,11 @@
 为了更加精细化利用数据，我们采用两阶段训练方法，第一阶段使用通用语料进行模型通用能力学习，第二部分加入STEM（科学，技术，工程，数学）相关数据进一步增强模型的推理能力、数学能力、问题解决能力。
 
 ### 第一阶段预训练
-训练过程中我们监督模型训练损失和各项能力的变化。下图是第一阶段预训练中我们筛选出来的重要指标的变化曲线。第一阶段预训练包含两个连续的训练过程，我们用不同的颜色表示。第一阶段预训练完成的模型我们称之为Skywork-13B-3.1TB-Base
+训练过程中我们监督模型训练损失和各项能力的变化。下图是第一阶段预训练中我们筛选出来的重要指标的变化曲线。第一阶段预训练包含两个连续的训练过程，我们用不同的颜色表示。第一阶段预训练完成的模型我们称之为Skywork-13B-3.1T-Base
 ![metrics of stage one](misc/stage1_metrics.png)
 
 ### 第二阶段预训练
-第二阶段预训练在通用语料中额外加入STEM相关数据继续训练。第二阶段训练大约130B token，两阶段总计训练3.2TB，产生了我们最终的Skywork-13B-Base模型。
+第二阶段预训练在通用语料中额外加入STEM相关数据继续训练。第二阶段训练大约130B token，两阶段总计训练3.2T，产生了我们最终的Skywork-13B-Base模型。
 
 <img src="misc/stage2_ceval.png" alt="Image" width="500" height="400">
 
