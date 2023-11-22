@@ -92,19 +92,18 @@ If you are interested in more training and evaluation details, please refer to o
 
 ## Download of Intermediate Model Checkpoints
 
-We have also open-sourced the Skywork-13B-Base model and provided the model checkpoints trained on 500B, 2TB, and 3.1TB tokens for community research into the evolution process of large language model capabilities.
+We have also open-sourced the Skywork-13B-Base model and provided the model checkpoints trained on 500B, 1T, 1.5T, 2T, 2.5T, 3T and 3.1T tokens for community research into the evolution process of large language model capabilities.
 
 | Model | Download URL |
 | --------- | ------ | 
-| Skywork-13B-Base-500B      |  🤗[Skywork-13B-Base-500B](https://huggingface.co/Skywork/Skywork-13B-Base-500B)|
-| Skywork-13B-Base-2TB      |  🤗[Skywork-13B-Base-2TB](https://huggingface.co/Skywork/Skywork-13B-Base-2TB)|
-| Skywork-13B-Base-3.1TB      |  🤗[Skywork-13B-Base-3.1TB](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
+| Skywork-13B-Base-Intermediate     |  🤗[Skywork-13B-Base-Intermediate](https://huggingface.co/Skywork/Skywork-13B-Base-Intermediate)|
+| Skywork-13B-Base-3.1T     |  🤗[Skywork-13B-Base-3.1T](https://huggingface.co/Skywork/Skywork-13B-Base-3.1TB)|
 
 
 # Skywork-13B Introduction
 
 ## Training Data
-We have developed a data cleaning pipeline with great care to effectively clean and filter low-quality data and eliminate harmful information from text data. Our Skywork-13B-Base model is trained on a  dataset with 3.2TB tokens that consists of high-quality Chinese, English, and code data, all of which have been thoroughly cleaned. The English data comprises 52.2% of the dataset, the Chinese data accounts for 39.6%, and the code data makes up 8%. This comprehensive approach ensures optimal performance for both Chinese and English while also maintaining the ability to handle code.
+We have developed a data cleaning pipeline with great care to effectively clean and filter low-quality data and eliminate harmful information from text data. Our Skywork-13B-Base model is trained on a  dataset with 3.2T tokens that consists of high-quality Chinese, English, and code data, all of which have been thoroughly cleaned. The English data comprises 52.2% of the dataset, the Chinese data accounts for 39.6%, and the code data makes up 8%. This comprehensive approach ensures optimal performance for both Chinese and English while also maintaining the ability to handle code.
 |             | Category         | Percentage |
 |-------------|------------------|------------|
 | **English** | Webpages         | 39.8%      |
@@ -154,11 +153,11 @@ We use Byte-Pair Encoding (BPE) to tokenize the data, with a vocabulary size of 
 In order to make more precise use of data, we adopt a two-stage training method. In the first stage, we use general corpora to train the model's general abilities. In the second stage, we incorporate STEM (Science, Technology, Engineering, Mathematics) related data to further enhance the model's reasoning, mathematical, and problem-solving abilities.
 
 ### First-stage Pretraining
-During the training process, we monitor the changes in model training loss and various abilities. The following figure shows the change curves of important indicators selected during the first stage of pre-training. The first stage of pre-training consists of two consecutive training processes, which are represented by different colors. The model completed in the first stage of pre-training is referred to as Skywork-13B-3.1TB-Base.
+During the training process, we monitor the changes in model training loss and various abilities. The following figure shows the change curves of important indicators selected during the first stage of pre-training. The first stage of pre-training consists of two consecutive training processes, which are represented by different colors. The model completed in the first stage of pre-training is referred to as Skywork-13B-3.1T-Base.
 ![Alt text](misc/stage1_metrics.png)
 
 ### Second-stage Pretraining
-In the second stage of pre-training, STEM-related data is added to the general language corpus for further training. The second stage training involves approximately 130 billion tokens, resulting in a total training of 3.2 TB across both stages, and yielding our final Skywork-13B-Base model.
+In the second stage of pre-training, STEM-related data is added to the general language corpus for further training. The second stage training involves approximately 130 billion tokens, resulting in a total training of 3.2 T across both stages, and yielding our final Skywork-13B-Base model.
 
 <img src="misc/stage2_ceval.png" alt="Image" width="500" height="400">
 
