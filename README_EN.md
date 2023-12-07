@@ -52,6 +52,8 @@ Our open-source Skywork series models can be used for commercial purposes, but y
 If you are interested in more training and evaluation details, please refer to our [technical report](http://arxiv.org/abs/2310.19341), [Skymath]((https://arxiv.org/skywork-tech-report)) paper and [SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf) paper.
  
 # News and Updates
+* 2023.12.7 Our SkyPile-150B dataset is now accessible via [huggingface](https://huggingface.co/datasets/Skywork/SkyPile-150B). 
+  
 * 2023.11.2 We have uploaded the evaluation data we built, [MOCK_GSM8K_TEST](https://huggingface.co/datasets/Skywork/mock_gsm8k_test), and the Chinese domain evaluation data [ChineseDomainModelingEval](https://huggingface.co/datasets/Skywork/ChineseDomainModelingEval) to huggingface. If you need to evaluate LLMs, please download our evaluation dataset.
 
 * 2023.10.31 Our technical report [Skywork: A More Open Bilingual Foundation Model](http://arxiv.org/abs/2310.19341) is available on arXiv, which includes more detailed evaluation methods, result comparisons, and technical details.
