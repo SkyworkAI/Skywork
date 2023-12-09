@@ -1,4 +1,4 @@
-for LOSS_DATA in zh_finance zh_general zh_government zh_movie zh_news zh_tech 
+for LOSS_DATA in zh_finance zh_general zh_government zh_movie zh_game zh_tech 
 do 
     export HF_MODEL_PATH=YOUR_SKYWORK_HF_BASE_MODEL
     export FLAG=skywork-13b-base
