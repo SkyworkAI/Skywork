@@ -62,7 +62,9 @@
 如果您希望了解更多的信息，如训练方案，评估方法，请参考我们的[技术报告](http://arxiv.org/abs/2310.19341)，[Skymath](https://arxiv.org/abs/2310.16713)论文，[SkyworkMM](https://github.com/will-singularity/Skywork-MM/blob/main/skywork_mm.pdf)论文。
 
 # 🔥 更新信息
-* 2023.12.7 天工[开源150B中文预训练语料](https://huggingface.co/datasets/Skywork/SkyPile-150B)安全审核后已重新开放。
+* 2023.12.7 天工开源150B中文预训练语料安全审核后已重新开放。地址：
+* *[(国外)Huggingface](https://huggingface.co/datasets/Skywork/SkyPile-150B)
+* *[(国内)始智AI](https://www.wisemodel.cn/datasets/Skywork/SkyPile-150B/)
 
 * 2023.11.2 我们将我们构建的评估数据[MOCK_GSM8K_TEST](https://huggingface.co/datasets/Skywork/mock_gsm8k_test)以及中文领域评估数据[ChineseDomainModelingEval](https://huggingface.co/datasets/Skywork/ChineseDomainModelingEval)上传到了huggingface，您如果有评估模型的需求，请下载我们的评估数据集。
 
