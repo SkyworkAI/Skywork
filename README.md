@@ -6,7 +6,7 @@
 <div align="center"><img src="misc/skywork_logo.jpeg" width="550"/></div>
 
 <p align="center">
-🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 👾 <a href="https://wisemodel.cn/organization/Skywork" target="_blank">Wisemodel</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
+🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 👾 <a href="https://wisemodel.cn/organization/Skywork" target="_blank">Wisemodel</a> • 🧰 <a href="https://openxlab.org.cn/models/hot/Skywork" target="_blank">OpenXLab</a> •  💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
 </p>
 
 
@@ -91,12 +91,12 @@
 ## 模型下载
 
 
-|         | HuggingFace基础模型   | HuggingFace量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | Wisemodel基础模型 | Wisemodel量化版模型 |
-|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
-| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |👾[Skywork-13B-Base](https://wisemodel.cn/models/Skywork/Skywork-13B-Base) | 👾 [Skywork-13B-Base-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Base-8bits) |
-| **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |👾敬请期待 | 👾敬请期待 |
-| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |👾[Skywork-13B-Math](https://wisemodel.cn/models/Skywork/Skywork-13B-Math) | 👾 [Skywork-13B-Math-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Math-8bits) |
-| **Skywork-13B-MM**      | 🤗敬请期待 | - | 🤖敬请期待 | - |👾敬请期待 | - |
+|         | HuggingFace基础模型   | HuggingFace量化版模型 | ModelScope基础模型 | ModelScope量化版模型 | Wisemodel基础模型 | Wisemodel量化版模型 | OpenXLab基础模型 | OpenXLab量化版模型 |
+|:-------:|:-----------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
+| **Skywork-13B-Base**      | 🤗 [Skywork-13B-Base](https://huggingface.co/Skywork/Skywork-13B-Base) | 🤗 [Skywork-13B-Base-8bits](https://huggingface.co/Skywork/Skywork-13B-Base-8bits) | 🤖[Skywork-13B-Base](https://www.modelscope.cn/models/skywork/Skywork-13B-Base) | 🤖 [Skywork-13B-Base-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Base-8bits) |👾[Skywork-13B-Base](https://wisemodel.cn/models/Skywork/Skywork-13B-Base) | 👾 [Skywork-13B-Base-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Base-8bits) |🧰[Skywork-13B-Base](https://openxlab.org.cn/models/detail/Skywork/Skywork-13B-base) |🧰 [Skywork-13B-Base-8bits](https://openxlab.org.cn/models/detail/Skywork/Skywork-13B-Base-8bits) |
+| **Skywork-13B-Chat**      | 🤗敬请期待 | 🤗敬请期待 | 🤖敬请期待 | 🤖敬请期待 |👾敬请期待 | 👾敬请期待 |🧰敬请期待 | 🧰敬请期待 |
+| **Skywork-13B-Math**      | 🤗 [Skywork-13B-Math](https://huggingface.co/Skywork/Skywork-13B-Math) | 🤗 [Skywork-13B-Math-8bits](https://huggingface.co/Skywork/Skywork-13B-Math-8bits) | 🤖 [Skywork-13B-Math](https://www.modelscope.cn/models/skywork/Skywork-13B-Math) | 🤖 [Skywork-13B-Math-8bits](https://www.modelscope.cn/models/skywork/Skywork-13B-Math-8bits) |👾[Skywork-13B-Math](https://wisemodel.cn/models/Skywork/Skywork-13B-Math) | 👾 [Skywork-13B-Math-8bits](https://wisemodel.cn/models/Skywork/Skywork-13B-Math-8bits) |🧰[Skywork-13B-Math](https://openxlab.org.cn/models/detail/Skywork/Skywork-13B-Math) | 🧰 [Skywork-13B-Math-8bits](https://openxlab.org.cn/models/detail/Skywork/Skywork-13B-Math-8bits) |
+| **Skywork-13B-MM**      | 🤗敬请期待 | - | 🤖敬请期待 | - |👾敬请期待 | - |🧰敬请期待 | - |
 
 
 ## 数据下载
