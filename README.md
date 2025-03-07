@@ -25,7 +25,7 @@
 <h4 align="center">
     <p>
         <b>English</b> |
-        <a href="https://github.com/SkyworkAI/Skywork/blob/main/README.md">中文</a>
+        <a href="https://github.com/SkyworkAI/Skywork/blob/main/README_ZH.md">中文</a>
     <p>
 </h4>
 
