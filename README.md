@@ -4,7 +4,7 @@
   ✨Skywork
 </h1>
 </div> -->
-<div align="center"><img src="misc/skywork_logo.png" width="550"/></div>
+<div align="center"><img src="misc/skywork-logo.png" width="550"/></div>
 
 <p align="center">
 🤗 <a href="https://huggingface.co/Skywork" target="_blank">Hugging Face</a> • 🤖 <a href="https://modelscope.cn/organization/Skywork" target="_blank">ModelScope</a> • 👾 <a href="https://wisemodel.cn/organization/Skywork" target="_blank">Wisemodel</a> • 💬 <a href="https://github.com/SkyworkAI/Skywork/blob/main/misc/wechat.png?raw=true" target="_blank">WeChat</a>• 📜<a href="http://arxiv.org/abs/2310.19341" target="_blank">Tech Report</a>
@@ -420,39 +420,6 @@ if __name__ == '__main__':
     First, we need to find out how many eggs Janet has left after eating for breakfast and baking for her friends. \n\nShe has 16 eggs per day, eats 3 for breakfast and uses 4 for baking. So, 16 - 3 - 4 = 9 eggs are left for selling at the farmers' market.\n\nSince she sells each egg for $2, she makes 9 * 2 = $<<9*2=18>>18 every day at the farmers' market.\n\nSo, the answer is $18.
     """
 ```
-
-
-### CLI Demo 
-
-
-```
-python cli_demo.py \
-    -m skywork-13b-chat-model-path 
-
-```
-
-<p align="center">
-    <br>
-    <img src="misc/chat_demo_1.gif" width="800" />
-    <br>
-<p>
-<br>
-
-
-<p align="center">
-    <br>
-    <img src="misc/chat_demo_2.gif" width="800" />
-    <br>
-<p>
-<br>
-
-
-<p align="center">
-    <br>
-    <img src="misc/chat_demo_3.gif" width="800" />
-    <br>
-<p>
-<br>
 
 
 # Quantization
